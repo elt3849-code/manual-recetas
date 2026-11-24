@@ -1,0 +1,2587 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MANUAL DE RECETAS ESTANDARIADAS PARA ENFERMEDADES CARIORESPIRATORIAS</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif']
+          },
+          colors: {
+            clinical: {
+              50: '#f0fdfa',
+              100: '#ccfbf1',
+              500: '#0d9488',
+              600: '#0f766e',
+              700: '#115e59',
+              800: '#134e4a',
+              900: '#042f2e'
+            },
+            cardiac: {
+              50: '#fff1f2',
+              100: '#ffe4e6',
+              600: '#e11d48',
+              700: '#be123c'
+            },
+            resp: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              600: '#2563eb',
+              700: '#1d4ed8'
+            }
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+    @media print {
+      .no-print {
+        display: none !important;
+      }
+      body {
+        background: #ffffff !important;
+      }
+      .print-break {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-teal-600 selection:text-white">
+
+  <!-- Notificación / Toast no intrusivo -->
+  <div id="toastBanner" class="no-print fixed bottom-5 right-5 z-50 hidden max-w-sm rounded-xl bg-slate-900 px-4 py-3 text-sm font-medium text-white shadow-xl transition-all duration-300">
+    <div class="flex items-center gap-2.5">
+      <span class="inline-block h-2.5 w-2.5 rounded-full bg-teal-400"></span>
+      <span id="toastMessage">Acción realizada</span>
+    </div>
+  </div>
+
+  <!-- Barra Superior Fija -->
+  <header id="top-bar" class="no-print sticky top-0 z-40 border-b border-slate-200/90 bg-white/95 backdrop-blur">
+    <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
+      <button type="button" onclick="navigateTo('inicio')" class="flex items-center gap-3 text-left group">
+        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-teal-600 text-white shadow-sm group-hover:bg-teal-700 transition">
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+          </svg>
+        </div>
+        <div>
+          <span class="block text-xs font-semibold uppercase tracking-wider text-teal-700">ASAN</span>
+          <span class="block text-sm font-bold text-slate-900 sm:text-base">MANUAL DE RECETAS ESTANDARIADAS PARA ENFERMEDADES CARIORESPIRATORIAS</span>
+        </div>
+      </button>
+
+      <nav class="flex flex-wrap items-center gap-2 text-xs sm:text-sm font-medium">
+        <button type="button" onclick="navigateTo('inicio')" class="rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-100 transition">
+          Portada
+        </button>
+        <button type="button" onclick="navigateTo('menu')" class="rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-100 transition">
+          Menú y Moléculas
+        </button>
+        <button type="button" onclick="navigateTo('menu', 'Cardíacas')" class="rounded-lg bg-rose-50 px-3 py-2 text-rose-700 hover:bg-rose-100 transition">
+          Cardíacas
+        </button>
+        <button type="button" onclick="navigateTo('menu', 'Respiratorias')" class="rounded-lg bg-blue-50 px-3 py-2 text-blue-700 hover:bg-blue-100 transition">
+          Respiratorias
+        </button>
+        <button type="button" onclick="openRecipeModal(null)" class="rounded-lg bg-teal-600 px-3 py-2 font-semibold text-white shadow-sm hover:bg-teal-700 transition">
+          + Nueva Receta
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTENEDOR PRINCIPAL -->
+  <main class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+
+    <!-- ========================================================= -->
+    <!-- VISTA 1: PORTADA PRINCIPAL                                -->
+    <!-- ========================================================= -->
+    <section id="view-inicio" class="space-y-8">
+      <!-- Hero Portada -->
+      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-gradient-to-br from-teal-900 via-slate-900 to-slate-800 text-white shadow-xl">
+        <div class="grid gap-8 p-6 sm:p-10 lg:grid-cols-12 lg:items-center">
+          <div class="space-y-5 lg:col-span-7">
+            <div class="inline-flex flex-wrap items-center gap-2 rounded-full bg-white/10 px-3.5 py-1.5 text-xs font-semibold text-teal-200 ring-1 ring-white/20">
+              <span>Examen Final · Modalidad Grupal</span>
+            </div>
+
+            <h1 class="text-2xl font-extrabold tracking-tight sm:text-3xl lg:text-4xl">
+              MANUAL DE RECETAS ESTANDARIADAS PARA ENFERMEDADES CARIORESPIRATORIAS
+            </h1>
+
+            <p class="text-base leading-relaxed text-slate-200 sm:text-lg">
+              Asignatura: <strong class="font-semibold text-white">Administración de Servicios de Alimentación y Nutrición</strong>.
+              Colección clínica de <strong class="font-semibold text-teal-300">50 fichas técnicas estandarizadas</strong> (25 para Enfermedades Cardíacas y 25 para Enfermedades Respiratorias), organizadas por tiempos de comida con su respectiva molécula calórica, gramajes, rendimiento, costos y preparación paso a paso.
+            </p>
+
+            <!-- Botones de Acceso Directo -->
+            <div class="flex flex-wrap gap-3 pt-2">
+              <button type="button" onclick="navigateTo('menu')" class="inline-flex items-center gap-2 rounded-xl bg-teal-500 px-5 py-3 text-sm font-bold text-slate-950 shadow-lg hover:bg-teal-400 transition">
+                <span>Explorar Menú General</span>
+                <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </button>
+              <button type="button" onclick="navigateTo('menu', 'Cardíacas')" class="inline-flex items-center gap-2 rounded-xl bg-rose-600/90 px-4 py-3 text-sm font-semibold text-white hover:bg-rose-600 transition">
+                <span>Enfermedades Cardíacas</span>
+              </button>
+              <button type="button" onclick="navigateTo('menu', 'Respiratorias')" class="inline-flex items-center gap-2 rounded-xl bg-blue-600/90 px-4 py-3 text-sm font-semibold text-white hover:bg-blue-600 transition">
+                <span>Enfermedades Respiratorias</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Tarjeta Resumen Académico -->
+          <div class="rounded-2xl bg-white/10 p-5 backdrop-blur-md ring-1 ring-white/15 lg:col-span-5 space-y-4">
+            <div class="flex items-center justify-between border-b border-white/15 pb-3">
+              <span class="text-xs font-bold uppercase tracking-wider text-teal-300">Ficha del Manual</span>
+              <span class="rounded-md bg-teal-500/20 px-2.5 py-0.5 text-xs font-semibold text-teal-200">50 Recetas Activas</span>
+            </div>
+            <div class="grid grid-cols-2 gap-3 text-center">
+              <div class="rounded-xl bg-rose-500/15 p-3.5 ring-1 ring-rose-400/25">
+                <div class="text-2xl font-extrabold text-rose-200">25</div>
+                <div class="text-xs font-medium text-rose-100">Recetas Cardíacas</div>
+              </div>
+              <div class="rounded-xl bg-blue-500/15 p-3.5 ring-1 ring-blue-400/25">
+                <div class="text-2xl font-extrabold text-blue-200">25</div>
+                <div class="text-xs font-medium text-blue-100">Recetas Respiratorias</div>
+              </div>
+            </div>
+            <div class="space-y-1.5 text-xs text-slate-200">
+              <p><strong class="text-white">Tiempos de comida:</strong> Desayuno, Media Mañana, Almuerzo, Media Tarde y Cena.</p>
+              <p><strong class="text-white">Contenido por ficha:</strong> Porciones, aporte nutricional (kcal, proteínas, lípidos, HC), costo y tiempo de preparación, ingredientes con gramajes exactos y procedimiento paso a paso.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Datos de los Integrantes y Docente (Editables y Guardados en LocalStorage) -->
+      <div class="grid gap-6 lg:grid-cols-12">
+        <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm lg:col-span-8">
+          <div class="mb-4 flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <h2 class="text-lg font-bold text-slate-900">Integrantes y Datos Académicos</h2>
+              <p class="text-sm text-slate-500">Edita los nombres completos de los integrantes y del docente; se guardan automáticamente en este navegador.</p>
+            </div>
+            <button type="button" onclick="saveGroupInfo()" class="rounded-xl bg-teal-600 px-4 py-2 text-xs font-semibold text-white hover:bg-teal-700 transition">
+              Guardar Datos
+            </button>
+          </div>
+
+          <div class="grid gap-4 sm:grid-cols-2">
+            <div>
+              <label class="mb-1 block text-xs font-semibold uppercase tracking-wide text-slate-600">Asignatura</label>
+              <input id="inputSubject" type="text" value="Administración de Servicios de Alimentación y Nutrición" class="w-full rounded-xl border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-sm font-medium text-slate-800 focus:border-teal-600 focus:bg-white focus:outline-none" />
+            </div>
+            <div>
+              <label class="mb-1 block text-xs font-semibold uppercase tracking-wide text-slate-600">Docente de la Asignatura</label>
+              <input id="inputProfessor" type="text" placeholder="Nombre completo del docente..." class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-800 focus:border-teal-600 focus:outline-none" />
+            </div>
+            <div class="sm:col-span-2">
+              <label class="mb-1 block text-xs font-semibold uppercase tracking-wide text-slate-600">Nombres Completos de los Integrantes</label>
+              <textarea id="inputMembers" rows="3" placeholder="Escribe los nombres completos de cada integrante (uno por línea o separados por coma)..." class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-800 focus:border-teal-600 focus:outline-none"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Acceso Rápido por Patología y Tiempo de Comida -->
+        <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm lg:col-span-4 flex flex-col justify-between space-y-5">
+          <div>
+            <h2 class="text-lg font-bold text-slate-900">Acceso Directo por Tiempo de Comida</h2>
+            <p class="mt-1 text-sm text-slate-500">Salta directamente al menú filtrado por momento del día.</p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <button type="button" onclick="navigateTo('menu', 'Todas', 'Desayuno')" class="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-700 hover:border-teal-500 hover:bg-teal-50 hover:text-teal-800 transition">
+                Desayuno
+              </button>
+              <button type="button" onclick="navigateTo('menu', 'Todas', 'Media Mañana')" class="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-700 hover:border-teal-500 hover:bg-teal-50 hover:text-teal-800 transition">
+                Media Mañana
+              </button>
+              <button type="button" onclick="navigateTo('menu', 'Todas', 'Almuerzo')" class="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-700 hover:border-teal-500 hover:bg-teal-50 hover:text-teal-800 transition">
+                Almuerzo
+              </button>
+              <button type="button" onclick="navigateTo('menu', 'Todas', 'Media Tarde')" class="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-700 hover:border-teal-500 hover:bg-teal-50 hover:text-teal-800 transition">
+                Media Tarde
+              </button>
+              <button type="button" onclick="navigateTo('menu', 'Todas', 'Cena')" class="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-700 hover:border-teal-500 hover:bg-teal-50 hover:text-teal-800 transition">
+                Cena
+              </button>
+            </div>
+          </div>
+
+          <div class="rounded-xl bg-teal-50 p-4 border border-teal-100">
+            <p class="text-xs font-bold uppercase tracking-wider text-teal-800">Codificación Estandarizada</p>
+            <p class="mt-1 text-xs leading-relaxed text-teal-900">
+              Cada preparación cuenta con código único por tiempo de comida: <strong>DES</strong> (Desayuno), <strong>MER.M</strong> (Merienda Matutina), <strong>ALM</strong> (Almuerzo), <strong>MER.V</strong> (Merienda Vespertina) y <strong>CEN</strong> (Cena).
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- VISTA 2: MENÚ DE NAVEGACIÓN, MOLÉCULAS CALÓRICAS Y RECETAS -->
+    <!-- ========================================================= -->
+    <section id="view-menu" class="hidden space-y-8">
+      <!-- Barra Superior de Navegación Interna -->
+      <div class="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+        <div class="flex flex-wrap items-center gap-2">
+          <button type="button" onclick="navigateTo('inicio')" class="inline-flex items-center gap-1.5 rounded-xl bg-slate-100 px-3.5 py-2 text-xs sm:text-sm font-semibold text-slate-700 hover:bg-slate-200 transition">
+            <span>← Volver al inicio</span>
+          </button>
+          <span class="text-sm font-bold text-slate-800 px-2">Menú Principal de Recetas Estandarizadas</span>
+        </div>
+        <div class="flex flex-wrap items-center gap-2">
+          <button type="button" onclick="saveAllRecipeChanges()" class="inline-flex items-center gap-1.5 rounded-xl bg-emerald-600 px-3.5 py-2 text-xs sm:text-sm font-semibold text-white shadow-sm hover:bg-emerald-700 transition">
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+            <span>Guardar Cambios</span>
+          </button>
+          <button type="button" onclick="window.print()" class="inline-flex items-center gap-1.5 rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-xs sm:text-sm font-semibold text-slate-700 hover:bg-slate-50 transition">
+            Imprimir / Exportar PDF
+          </button>
+          <button type="button" onclick="openRecipeModal(null)" class="inline-flex items-center gap-1.5 rounded-xl bg-teal-600 px-3.5 py-2 text-xs sm:text-sm font-semibold text-white hover:bg-teal-700 transition">
+            + Agregar Receta
+          </button>
+        </div>
+      </div>
+
+      <!-- Moléculas Calóricas por Enfermedad (Editables) -->
+      <div class="space-y-4">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <h2 class="text-xl font-extrabold text-slate-900 sm:text-2xl">Moléculas Calóricas por Patología</h2>
+            <p class="text-sm text-slate-500">Distribución calórica y de macronutrientes de referencia para Enfermedades Cardíacas y Enfermedades Respiratorias (puedes ajustar valores si lo requieres).</p>
+          </div>
+          <button type="button" onclick="saveCaloricMolecules()" class="rounded-xl bg-slate-800 px-4 py-2 text-xs font-semibold text-white hover:bg-slate-900 transition">
+            Guardar Moléculas Calóricas
+          </button>
+        </div>
+
+        <div id="moleculesGrid" class="grid gap-5 md:grid-cols-2">
+          <!-- Renderizado dinámicamente por JS -->
+        </div>
+      </div>
+
+      <!-- Combinador de Menú Diario (Automático y Manual) -->
+      <div class="rounded-2xl border border-teal-200 bg-gradient-to-br from-teal-50/80 via-white to-slate-50 p-5 sm:p-6 shadow-sm space-y-5">
+        <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+          <div>
+            <span class="inline-flex items-center gap-1.5 rounded-full bg-teal-100 px-3 py-1 text-xs font-bold text-teal-800">
+              Herramienta Dietoterapéutica
+            </span>
+            <h2 class="mt-2 text-xl font-extrabold text-slate-900">Combinador de Menú Diario</h2>
+            <p class="text-sm text-slate-600">Elige entre generar automáticamente una propuesta completa de los 5 tiempos de comida o armar tu combinación de forma manual.</p>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-2">
+            <select id="combinerDiseaseSelect" onchange="if (combinerMode === 'manual') openManualCombiner()" class="rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-xs sm:text-sm font-semibold text-slate-800 focus:border-teal-600 focus:outline-none">
+              <option value="Cardíacas">Enfermedades Cardíacas</option>
+              <option value="Respiratorias">Enfermedades Respiratorias</option>
+              <option value="Todas">Combinación Mixta (Ambas)</option>
+            </select>
+            <button type="button" id="btnAutoCombine" onclick="generateDailyCombination()" class="inline-flex items-center gap-2 rounded-xl bg-teal-600 px-4 py-2.5 text-xs sm:text-sm font-bold text-white shadow-sm hover:bg-teal-700 transition">
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              </svg>
+              <span>Combinar Automáticamente</span>
+            </button>
+            <button type="button" id="btnManualCombine" onclick="openManualCombiner()" class="inline-flex items-center gap-2 rounded-xl border border-teal-600 bg-white px-4 py-2.5 text-xs sm:text-sm font-bold text-teal-800 shadow-sm hover:bg-teal-50 transition">
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+              </svg>
+              <span>Combinar Manualmente</span>
+            </button>
+          </div>
+        </div>
+
+        <div id="combinerResultContainer" class="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+          <!-- Renderizado dinámicamente por JS -->
+        </div>
+
+        <div id="combinerSummaryBar" class="hidden flex-wrap items-center justify-between gap-3 rounded-xl border border-teal-200 bg-white px-4 py-3 text-xs sm:text-sm">
+          <div class="font-medium text-slate-700">
+            Menú diario (<span id="combinerModeBadge" class="font-bold text-teal-700">Automático</span>): <strong id="combinerTotalLabel" class="text-slate-900">5 tiempos de comida</strong>
+          </div>
+          <div class="flex flex-wrap items-center gap-3">
+            <span class="font-bold text-teal-800" id="combinerMacrosLabel">0 kcal · PRO: 0g · LIP: 0g · HC: 0g</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filtros por Enfermedad, Tiempos de Comida y Buscador por Código -->
+      <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm space-y-4">
+        <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+          <!-- Pestañas de Enfermedad -->
+          <div class="flex flex-wrap gap-2" role="tablist">
+            <button type="button" id="tab-Todas" onclick="setDiseaseFilter('Todas')" class="disease-tab rounded-xl px-4 py-2.5 text-sm font-bold transition">
+              Todas (<span id="count-Todas">50</span>)
+            </button>
+            <button type="button" id="tab-Cardíacas" onclick="setDiseaseFilter('Cardíacas')" class="disease-tab rounded-xl px-4 py-2.5 text-sm font-bold transition">
+              Enfermedades Cardíacas
+            </button>
+            <button type="button" id="tab-Respiratorias" onclick="setDiseaseFilter('Respiratorias')" class="disease-tab rounded-xl px-4 py-2.5 text-sm font-bold transition">
+              Enfermedades Respiratorias
+            </button>
+          </div>
+
+          <!-- Buscadores: por Código Exacto y General -->
+          <div class="flex flex-col gap-2 sm:flex-row sm:items-center">
+            <div class="relative w-full sm:w-52">
+              <input id="codeSearchInput" type="text" oninput="renderRecipes()" placeholder="Código (ej. DES-001)..." class="w-full rounded-xl border border-teal-300 bg-teal-50/50 py-2 pl-9 pr-3 text-sm font-semibold uppercase text-slate-800 placeholder:normal-case placeholder:font-normal focus:border-teal-600 focus:bg-white focus:outline-none" />
+              <svg class="absolute left-3 top-2.5 h-4 w-4 text-teal-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14" />
+              </svg>
+            </div>
+            <div class="relative w-full sm:w-64">
+              <input id="searchInput" type="text" oninput="renderRecipes()" placeholder="Buscar plato o ingrediente..." class="w-full rounded-xl border border-slate-300 bg-slate-50 py-2 pl-9 pr-3 text-sm text-slate-800 focus:border-teal-600 focus:bg-white focus:outline-none" />
+              <svg class="absolute left-3 top-2.5 h-4 w-4 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 103.5 10.5a7.5 7.5 0 0013.15 6.15z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filtro por Tiempos de Comida con Siglas -->
+        <div class="flex flex-wrap items-center gap-2 border-t border-slate-100 pt-3">
+          <span class="mr-1 text-xs font-bold uppercase tracking-wider text-slate-500">Tiempo de comida:</span>
+          <button type="button" data-meal="Todos" onclick="setMealFilter('Todos')" class="meal-btn rounded-lg px-3 py-1.5 text-xs font-semibold transition">Todos</button>
+          <button type="button" data-meal="Desayuno" onclick="setMealFilter('Desayuno')" class="meal-btn rounded-lg px-3 py-1.5 text-xs font-semibold transition">Desayuno (DES)</button>
+          <button type="button" data-meal="Media Mañana" onclick="setMealFilter('Media Mañana')" class="meal-btn rounded-lg px-3 py-1.5 text-xs font-semibold transition">Merienda Matutina (MER.M)</button>
+          <button type="button" data-meal="Almuerzo" onclick="setMealFilter('Almuerzo')" class="meal-btn rounded-lg px-3 py-1.5 text-xs font-semibold transition">Almuerzo (ALM)</button>
+          <button type="button" data-meal="Media Tarde" onclick="setMealFilter('Media Tarde')" class="meal-btn rounded-lg px-3 py-1.5 text-xs font-semibold transition">Merienda Vespertina (MER.V)</button>
+          <button type="button" data-meal="Cena" onclick="setMealFilter('Cena')" class="meal-btn rounded-lg px-3 py-1.5 text-xs font-semibold transition">Cena (CEN)</button>
+        </div>
+      </div>
+
+      <!-- Contador de Resultados y Restauración -->
+      <div class="flex flex-wrap items-center justify-between gap-2 text-sm text-slate-600">
+        <p id="resultsCounter">Mostrando 50 recetas estandarizadas</p>
+        <div class="flex items-center gap-4">
+          <button type="button" onclick="resetFilters()" class="font-semibold text-teal-700 hover:underline">Limpiar filtros</button>
+          <button type="button" onclick="confirmResetCatalog()" class="text-xs font-semibold text-slate-500 hover:text-rose-600 transition">Restaurar catálogo base (50)</button>
+        </div>
+      </div>
+
+      <!-- Grid de Fichas / Tarjetas -->
+      <div id="recipesGrid" class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- Renderizado dinámicamente por JS -->
+      </div>
+
+      <!-- Botones de Retorno al Final del Menú -->
+      <div class="flex flex-wrap items-center justify-center gap-4 pt-4">
+        <button type="button" onclick="navigateTo('inicio')" class="rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white hover:bg-slate-800 transition">
+          ← Volver al inicio
+        </button>
+        <button type="button" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" class="rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition">
+          ↑ Subir al menú superior
+        </button>
+      </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- VISTA 3: FICHA TÉCNICA ESTANDARIZADA DETALLADA            -->
+    <!-- ========================================================= -->
+    <section id="view-ficha" class="hidden space-y-6">
+      <!-- Navegación Superior -->
+      <div class="no-print flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+        <div class="flex flex-wrap items-center gap-2">
+          <button type="button" onclick="navigateTo('menu')" class="inline-flex items-center gap-1.5 rounded-xl bg-teal-600 px-4 py-2 text-xs sm:text-sm font-semibold text-white hover:bg-teal-700 transition">
+            <span>← Volver al menú</span>
+          </button>
+          <button type="button" onclick="navigateTo('inicio')" class="inline-flex items-center gap-1.5 rounded-xl bg-slate-100 px-4 py-2 text-xs sm:text-sm font-semibold text-slate-700 hover:bg-slate-200 transition">
+            <span>Volver al inicio</span>
+          </button>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2">
+          <button type="button" onclick="saveAllRecipeChanges()" class="inline-flex items-center gap-1.5 rounded-xl bg-emerald-600 px-3.5 py-2 text-xs sm:text-sm font-semibold text-white shadow-sm hover:bg-emerald-700 transition">
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+            <span>Guardar Cambios</span>
+          </button>
+          <button type="button" onclick="editCurrentRecipe()" class="rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-xs sm:text-sm font-semibold text-slate-700 hover:bg-slate-50 transition">
+            Editar Ficha
+          </button>
+          <button type="button" onclick="requestDeleteCurrentRecipe()" class="rounded-xl border border-rose-200 bg-rose-50 px-3.5 py-2 text-xs sm:text-sm font-semibold text-rose-700 hover:bg-rose-100 transition">
+            Eliminar Receta
+          </button>
+          <button type="button" onclick="window.print()" class="rounded-xl bg-slate-900 px-3.5 py-2 text-xs sm:text-sm font-semibold text-white hover:bg-slate-800 transition">
+            Imprimir / Guardar PDF
+          </button>
+        </div>
+      </div>
+
+      <!-- Cuerpo de la Ficha Técnica -->
+      <article id="fichaContent" class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8 space-y-8">
+        <!-- Renderizado dinámicamente por JS -->
+      </article>
+
+      <!-- Botones de Navegación Interna al Final de Cada Receta -->
+      <div class="no-print flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+        <div class="flex flex-wrap items-center gap-3">
+          <button type="button" onclick="navigateTo('inicio')" class="rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white hover:bg-slate-800 transition">
+            ← Volver al inicio
+          </button>
+          <button type="button" onclick="navigateTo('menu')" class="rounded-xl bg-teal-600 px-5 py-3 text-sm font-semibold text-white hover:bg-teal-700 transition">
+            ← Volver al menú
+          </button>
+        </div>
+        <div class="flex items-center gap-2">
+          <button type="button" id="prevRecipeBtn" onclick="stepRecipe(-1)" class="rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition">
+            ← Anterior receta
+          </button>
+          <button type="button" id="nextRecipeBtn" onclick="stepRecipe(1)" class="rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition">
+            Siguiente receta →
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Pie de Página -->
+  <footer class="no-print mt-12 border-t border-slate-200 bg-white py-6 text-center text-xs text-slate-500">
+    <div class="mx-auto max-w-7xl px-4">
+      MANUAL DE RECETAS ESTANDARIADAS PARA ENFERMEDADES CARIORESPIRATORIAS · Administración de Servicios de Alimentación y Nutrición
+    </div>
+  </footer>
+
+  <!-- ========================================================= -->
+  <!-- MODAL PARA CREAR / EDITAR FICHA TÉCNICA DE RECETA         -->
+  <!-- ========================================================= -->
+  <div id="recipeModal" class="no-print fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/60 p-4 backdrop-blur-xs overflow-y-auto">
+    <div class="my-8 w-full max-w-3xl rounded-3xl border border-slate-200 bg-white p-6 shadow-2xl sm:p-8 space-y-5">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+        <h3 id="modalTitle" class="text-xl font-bold text-slate-900">Nueva Ficha Técnica Estandarizada</h3>
+        <button type="button" onclick="closeRecipeModal()" class="rounded-lg p-1.5 text-slate-400 hover:bg-slate-100 hover:text-slate-700">
+          ✕
+        </button>
+      </div>
+
+      <form id="recipeForm" onsubmit="handleRecipeFormSubmit(event)" class="space-y-4">
+        <input type="hidden" id="editRecipeId" />
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div class="sm:col-span-2">
+            <label class="mb-1 block text-xs font-semibold uppercase text-slate-600">Nombre del Plato</label>
+            <input id="formName" type="text" required class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm focus:border-teal-600 focus:outline-none" />
+          </div>
+          <div>
+            <label class="mb-1 block text-xs font-semibold uppercase text-slate-600">Enfermedad / Patología</label>
+            <select id="formDisease" class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-sm focus:border-teal-600 focus:outline-none">
+              <option value="Cardíacas">Enfermedades Cardíacas</option>
+              <option value="Respiratorias">Enfermedades Respiratorias</option>
+            </select>
+          </div>
+          <div>
+            <label class="mb-1 block text-xs font-semibold uppercase text-slate-600">Tiempo de Comida</label>
+            <select id="formMeal" onchange="updateSuggestedCodePreview()" class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-sm focus:border-teal-600 focus:outline-none">
+              <option value="Desayuno">Desayuno (DES)</option>
+              <option value="Media Mañana">Merienda Matutina (MER.M)</option>
+              <option value="Almuerzo">Almuerzo (ALM)</option>
+              <option value="Media Tarde">Merienda Vespertina (MER.V)</option>
+              <option value="Cena">Cena (CEN)</option>
+            </select>
+          </div>
+          <div>
+            <label class="mb-1 block text-xs font-semibold uppercase text-slate-600">Código de Receta (ej. DES-011)</label>
+            <input id="formCode" type="text" required placeholder="DES-011" class="w-full rounded-xl border border-slate-300 bg-slate-50 px-3.5 py-2 text-sm font-bold uppercase text-teal-800 focus:border-teal-600 focus:bg-white focus:outline-none" />
+          </div>
+          <div>
+            <label class="mb-1 block text-xs font-semibold uppercase text-slate-600">Número de Porciones</label>
+            <input id="formServings" type="number" min="1" value="1" required class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm focus:border-teal-600 focus:outline-none" />
+          </div>
+          <div>
+            <label class="mb-1 block text-xs font-semibold uppercase text-slate-600">Costo de Preparación (Bs.)</label>
+            <input id="formCost" type="number" step="0.1" min="0" value="0" required class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm focus:border-teal-600 focus:outline-none" />
+          </div>
+          <div>
+            <label class="mb-1 block text-xs font-semibold uppercase text-slate-600">Tiempo de Preparación (min)</label>
+            <input id="formPrepTime" type="number" min="1" value="15" required class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm focus:border-teal-600 focus:outline-none" />
+          </div>
+          <div class="sm:col-span-2 grid grid-cols-2 gap-3 rounded-2xl border border-teal-100 bg-teal-50/50 p-3.5 sm:grid-cols-4">
+            <div>
+              <label class="mb-1 block text-[11px] font-bold uppercase text-teal-800">Kcal</label>
+              <input id="formKcal" type="number" step="0.1" min="0" value="0" required class="w-full rounded-xl border border-slate-300 bg-white px-3 py-1.5 text-sm font-bold text-slate-800 focus:border-teal-600 focus:outline-none" />
+            </div>
+            <div>
+              <label class="mb-1 block text-[11px] font-bold uppercase text-teal-800">Proteínas (g)</label>
+              <input id="formProtein" type="number" step="0.1" min="0" value="0" required class="w-full rounded-xl border border-slate-300 bg-white px-3 py-1.5 text-sm font-bold text-slate-800 focus:border-teal-600 focus:outline-none" />
+            </div>
+            <div>
+              <label class="mb-1 block text-[11px] font-bold uppercase text-teal-800">Lípidos (g)</label>
+              <input id="formLipids" type="number" step="0.1" min="0" value="0" required class="w-full rounded-xl border border-slate-300 bg-white px-3 py-1.5 text-sm font-bold text-slate-800 focus:border-teal-600 focus:outline-none" />
+            </div>
+            <div>
+              <label class="mb-1 block text-[11px] font-bold uppercase text-teal-800">HC (g)</label>
+              <input id="formCarbs" type="number" step="0.1" min="0" value="0" required class="w-full rounded-xl border border-slate-300 bg-white px-3 py-1.5 text-sm font-bold text-slate-800 focus:border-teal-600 focus:outline-none" />
+            </div>
+          </div>
+          <div class="sm:col-span-2 space-y-2.5">
+            <div class="flex items-center justify-between">
+              <label class="block text-xs font-semibold uppercase text-slate-600">Ingredientes y Gramajes Exactos</label>
+              <button type="button" onclick="addIngredientRow()" class="inline-flex items-center gap-1 rounded-lg bg-teal-50 px-2.5 py-1 text-xs font-bold text-teal-700 ring-1 ring-teal-200 hover:bg-teal-100 transition">
+                + Agregar fila
+              </button>
+            </div>
+            <div class="grid grid-cols-12 gap-2 px-1 text-[11px] font-bold uppercase text-slate-400">
+              <div class="col-span-7">Ingrediente</div>
+              <div class="col-span-4">Gramaje</div>
+              <div class="col-span-1 text-center"></div>
+            </div>
+            <div id="ingredientRowsContainer" class="space-y-2 max-h-56 overflow-y-auto pr-1">
+              <!-- Filas separadas de ingrediente y gramaje -->
+            </div>
+          </div>
+          <div class="sm:col-span-2">
+            <label class="mb-1 block text-xs font-semibold uppercase text-slate-600">Procedimiento Paso a Paso (uno por línea)</label>
+            <textarea id="formSteps" rows="4" required placeholder="1. Pesar y lavar todos los ingredientes...&#10;2. Cocinar a fuego suave..." class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm focus:border-teal-600 focus:outline-none"></textarea>
+          </div>
+        </div>
+
+        <div class="flex justify-end gap-3 border-t border-slate-100 pt-4">
+          <button type="button" onclick="closeRecipeModal()" class="rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50">
+            Cancelar
+          </button>
+          <button type="submit" class="rounded-xl bg-teal-600 px-5 py-2 text-sm font-semibold text-white hover:bg-teal-700">
+            Guardar Ficha Técnica
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // =========================================================================
+    // 1. CONSTANTES, CLAVES DE ALMACENAMIENTO Y ESTADO GLOBAL
+    // =========================================================================
+    const STORAGE_KEYS = {
+      RECIPES: 'manual_cardioresp_recipes_v1',
+      MOLECULES: 'manual_cardioresp_molecules_v1',
+      GROUP_INFO: 'manual_cardioresp_group_v1'
+    };
+
+    const MEAL_PREFIX_MAP = {
+      'Desayuno': 'DES',
+      'Media Mañana': 'MER.M',
+      'Almuerzo': 'ALM',
+      'Media Tarde': 'MER.V',
+      'Cena': 'CEN'
+    };
+
+    const MEAL_DISPLAY_MAP = {
+      'Desayuno': 'Desayuno (DES)',
+      'Media Mañana': 'Merienda Matutina (MER.M)',
+      'Almuerzo': 'Almuerzo (ALM)',
+      'Media Tarde': 'Merienda Vespertina (MER.V)',
+      'Cena': 'Cena (CEN)'
+    };
+
+    let recipes = [];
+    let molecules = {};
+    let currentView = 'inicio';
+    let selectedDisease = 'Todas';
+    let selectedMeal = 'Todos';
+    let currentRecipeId = null;
+    let toastTimeout = null;
+
+    // =========================================================================
+    // 2. MOLÉCULAS CALÓRICAS POR DEFECTO
+    // =========================================================================
+    function getDefaultMolecules() {
+      return {
+        'Cardíacas': {
+          title: 'Enfermedades Cardíacas (Dieta Cardioprotectora Hiposódica)',
+          kcal: 1800,
+          choPct: 55,
+          proPct: 18,
+          fatPct: 27,
+          notes: 'Restricción de sodio (< 1500–2000 mg/día), énfasis en ácidos grasos mono y poliinsaturados (omega-3), fibra soluble (> 25 g/día), potasio, magnesio y control estricto de grasas saturadas (< 7%).'
+        },
+        'Respiratorias': {
+          title: 'Enfermedades Respiratorias (EPOC / Insuficiencia Respiratoria)',
+          kcal: 2100,
+          choPct: 45,
+          proPct: 20,
+          fatPct: 35,
+          notes: 'Aporte normo-hipercalórico e hiperproteico para preservar la musculatura respiratoria, con menor proporción relativa de hidratos de carbono para reducir el cociente respiratorio (RQ) y la producción de CO₂.'
+        }
+      };
+    }
+
+    // =========================================================================
+    // 3. CATÁLOGO INICIAL DE 50 RECETAS ESTANDARIZADAS (25 CARDÍACAS + 25 RESP.)
+    // =========================================================================
+    function buildInitialRecipes() {
+      const data = [
+        // --- CARDÍACAS: DESAYUNO (5) ---
+        {
+          code: 'DES-001', disease: 'Cardíacas', meal: 'Desayuno', servings: 1,
+          cost: 6.50, prepTime: 10,
+          name: 'Avena cocida con manzana verde, chía y nueces',
+          kcal: 345, protein: 11.5, lipids: 10.2, carbs: 52.0,
+          ingredients: [
+            { item: 'Hojuelas de avena integral', qty: '45 g' },
+            { item: 'Leche descremada fluida', qty: '200 ml' },
+            { item: 'Manzana verde con cáscara picada', qty: '80 g' },
+            { item: 'Semillas de chía', qty: '10 g' },
+            { item: 'Nueces troceadas sin sal', qty: '12 g' },
+            { item: 'Canela en polvo', qty: '1 g' }
+          ],
+          steps: [
+            'Colocar la leche descremada en una olla pequeña a fuego medio junto con la canela.',
+            'Incorporar las hojuelas de avena y cocinar durante 6 minutos removiendo constantemente.',
+            'Agregar la manzana verde picada en cubos pequeños en los últimos 2 minutos de cocción.',
+            'Servir en bol y decorar con las semillas de chía y las nueces troceadas.'
+          ]
+        },
+        {
+          code: 'DES-002', disease: 'Cardíacas', meal: 'Desayuno', servings: 1,
+          cost: 8.50, prepTime: 12,
+          name: 'Tostadas integrales con aguacate, tomate y claras revueltas',
+          kcal: 360, protein: 18.0, lipids: 13.5, carbs: 41.0,
+          ingredients: [
+            { item: 'Pan integral bajo en sodio', qty: '60 g (2 rebanadas)' },
+            { item: 'Claras de huevo pasteurizadas', qty: '100 g (3 unidades)' },
+            { item: 'Aguacate (palta) maduro', qty: '45 g' },
+            { item: 'Tomate fresco en rodajas', qty: '50 g' },
+            { item: 'Aceite de oliva extra virgen', qty: '5 ml' },
+            { item: 'Orégano seco y pimienta', qty: '1 g' }
+          ],
+          steps: [
+            'Tostar ligeramente las rebanadas de pan integral sin añadir mantequilla.',
+            'Batir las claras de huevo con una pizca de orégano y cuajar en sartén antiadherente con aceite de oliva.',
+            'Triturar el aguacate con tenedor sin sal y untar sobre las tostadas.',
+            'Colocar las rodajas de tomate y las claras revueltas encima; servir tibio.'
+          ]
+        },
+        {
+          code: 'DES-003', disease: 'Cardíacas', meal: 'Desayuno', servings: 1,
+          cost: 9.00, prepTime: 5,
+          name: 'Yogur natural descremado con frutos rojos y linaza molida',
+          kcal: 295, protein: 14.5, lipids: 6.8, carbs: 44.0,
+          ingredients: [
+            { item: 'Yogur natural descremado sin azúcar', qty: '200 g' },
+            { item: 'Frutillas y arándanos frescos', qty: '100 g' },
+            { item: 'Semillas de linaza molida', qty: '12 g' },
+            { item: 'Copos de quinua pop sin azúcar', qty: '20 g' },
+            { item: 'Esencia de vainilla natural', qty: '2 ml' }
+          ],
+          steps: [
+            'Lavar y desinfectar cuidadosamente las frutillas y los arándanos.',
+            'Mezclar el yogur descremado con la esencia de vainilla y la linaza recién molida.',
+            'Servir en copa o compotera y cubrir con los frutos rojos troceados y la quinua pop.'
+          ]
+        },
+        {
+          code: 'DES-004', disease: 'Cardíacas', meal: 'Desayuno', servings: 1,
+          cost: 8.00, prepTime: 12,
+          name: 'Omelette de espinaca y champiñones con pan de centeno',
+          kcal: 340, protein: 19.2, lipids: 11.4, carbs: 39.5,
+          ingredients: [
+            { item: 'Huevo entero', qty: '55 g (1 unidad)' },
+            { item: 'Claras de huevo', qty: '70 g (2 unidades)' },
+            { item: 'Hojas de espinaca fresca', qty: '40 g' },
+            { item: 'Champiñones laminados', qty: '40 g' },
+            { item: 'Pan de centeno integral', qty: '55 g' },
+            { item: 'Aceite de oliva extra virgen', qty: '5 ml' }
+          ],
+          steps: [
+            'Saltear los champiñones laminados y la espinaca picada en sartén con el aceite de oliva durante 3 minutos.',
+            'Batir el huevo entero junto con las claras y verter sobre los vegetales.',
+            'Cocinar a fuego bajo hasta cuajar, doblar por la mitad y acompañar con el pan de centeno.'
+          ]
+        },
+        {
+          code: 'DES-005', disease: 'Cardíacas', meal: 'Desayuno', servings: 1,
+          cost: 6.00, prepTime: 5,
+          name: 'Batido cardioprotector de plátano, avena, cacao puro y leche descremada',
+          kcal: 355, protein: 14.0, lipids: 6.5, carbs: 60.0,
+          ingredients: [
+            { item: 'Leche descremada', qty: '220 ml' },
+            { item: 'Plátano maduro (fuente de potasio)', qty: '90 g' },
+            { item: 'Avena instantánea', qty: '25 g' },
+            { item: 'Cacao amargo en polvo sin azúcar', qty: '8 g' },
+            { item: 'Almendras fileteadas', qty: '8 g' }
+          ],
+          steps: [
+            'Colocar en el vaso de la licuadora la leche descremada, el plátano en rodajas, la avena y el cacao.',
+            'Procesar durante 45 segundos hasta obtener una textura homogénea y cremosa.',
+            'Servir en vaso alto y espolvorear las almendras fileteadas por encima.'
+          ]
+        },
+
+        // --- CARDÍACAS: MEDIA MAÑANA (5) ---
+        {
+          code: 'MER.M-001', disease: 'Cardíacas', meal: 'Media Mañana', servings: 1,
+          cost: 4.50, prepTime: 5,
+          name: 'Pera fresca con almendras naturales laminadas',
+          kcal: 165, protein: 4.1, lipids: 7.5, carbs: 22.0,
+          ingredients: [
+            { item: 'Pera fresca madura', qty: '140 g' },
+            { item: 'Almendras naturales sin sal', qty: '14 g' },
+            { item: 'Canela molida', qty: '0.5 g' }
+          ],
+          steps: [
+            'Lavar la pera y cortarla en gajos finos conservando su piel para aprovechar la fibra.',
+            'Servir acompañada de las almendras naturales laminadas y un toque de canela.'
+          ]
+        },
+        {
+          code: 'MER.M-002', disease: 'Cardíacas', meal: 'Media Mañana', servings: 1,
+          cost: 5.50, prepTime: 5,
+          name: 'Queso ricota bajo en sodio con rodajas de durazno fresco',
+          kcal: 155, protein: 11.2, lipids: 4.8, carbs: 17.0,
+          ingredients: [
+            { item: 'Queso ricota descremado sin sal añadida', qty: '80 g' },
+            { item: 'Durazno fresco maduro', qty: '110 g' },
+            { item: 'Semillas de ajonjolí tostado', qty: '4 g' }
+          ],
+          steps: [
+            'Lavar el durazno, retirar el hueso y cortar en gajos medianos.',
+            'Disponer la porción de ricota en un plato pequeño, acompañar con el durazno y espolvorear ajonjolí.'
+          ]
+        },
+        {
+          code: 'MER.M-003', disease: 'Cardíacas', meal: 'Media Mañana', servings: 1,
+          cost: 5.00, prepTime: 8,
+          name: 'Ensalada cítrica de naranja y kiwi con semillas de calabaza',
+          kcal: 160, protein: 4.5, lipids: 5.2, carbs: 25.5,
+          ingredients: [
+            { item: 'Naranja dulce pelada a vivo', qty: '110 g' },
+            { item: 'Kiwi fresco en rodajas', qty: '75 g' },
+            { item: 'Semillas de calabaza (pepitas) sin sal', qty: '10 g' }
+          ],
+          steps: [
+            'Cortar la naranja y el kiwi en rodajas o cubos medianos.',
+            'Mezclar suavemente en un bol y añadir las semillas de calabaza antes de servir.'
+          ]
+        },
+        {
+          code: 'MER.M-004', disease: 'Cardíacas', meal: 'Media Mañana', servings: 1,
+          cost: 5.50, prepTime: 10,
+          name: 'Galletas de arroz integral sin sal con hummus casero bajo en sodio',
+          kcal: 175, protein: 6.2, lipids: 5.8, carbs: 24.5,
+          ingredients: [
+            { item: 'Tortitas de arroz integral sin sal', qty: '25 g (3 unidades)' },
+            { item: 'Garbanzos cocidos sin sal', qty: '55 g' },
+            { item: 'Aceite de oliva extra virgen', qty: '4 ml' },
+            { item: 'Jugo de limón y comino', qty: '5 ml' }
+          ],
+          steps: [
+            'Procesar los garbanzos cocidos con el aceite de oliva, jugo de limón y una pizca de comino hasta formar una pasta suave.',
+            'Untar el hummus sobre las tortitas de arroz integral y servir de inmediato.'
+          ]
+        },
+        {
+          code: 'MER.M-005', disease: 'Cardíacas', meal: 'Media Mañana', servings: 1,
+          cost: 4.50, prepTime: 15,
+          name: 'Compota tibia de manzana y ciruela pasa sin azúcar añadida',
+          kcal: 150, protein: 1.5, lipids: 0.5, carbs: 36.0,
+          ingredients: [
+            { item: 'Manzana roja pelada y picada', qty: '130 g' },
+            { item: 'Ciruelas pasas sin carozo', qty: '20 g' },
+            { item: 'Rama de canela y clavo de olor', qty: '2 g' },
+            { item: 'Agua filtrada', qty: '60 ml' }
+          ],
+          steps: [
+            'Cocinar la manzana picada con las ciruelas pasas, el agua y las especias a fuego lento por 10 minutos.',
+            'Retirar la rama de canela y triturar ligeramente con tenedor; servir tibia.'
+          ]
+        },
+
+        // --- CARDÍACAS: ALMUERZO (5) ---
+        {
+          code: 'ALM-001', disease: 'Cardíacas', meal: 'Almuerzo', servings: 1,
+          cost: 18.50, prepTime: 25,
+          name: 'Filete de salmón al vapor con quinua tricolor y brócoli',
+          kcal: 560, protein: 34.0, lipids: 18.5, carbs: 63.0,
+          ingredients: [
+            { item: 'Filete de salmón fresco sin piel', qty: '130 g' },
+            { item: 'Quinua tricolor lavada (en crudo)', qty: '65 g' },
+            { item: 'Floretes de brócoli fresco', qty: '120 g' },
+            { item: 'Aceite de oliva extra virgen', qty: '8 ml' },
+            { item: 'Jugo de limón, ajo y eneldo', qty: '10 g' }
+          ],
+          steps: [
+            'Cocinar la quinua previamente lavada en agua sin sal durante 15 minutos hasta que abra el grano.',
+            'Cocinar al vapor el filete de salmón aderezado con limón, ajo y eneldo junto con el brócoli durante 10 minutos.',
+            'Emplatar la quinua como base, disponer el salmón y el brócoli, y rociar el aceite de oliva en crudo.'
+          ]
+        },
+        {
+          code: 'ALM-002', disease: 'Cardíacas', meal: 'Almuerzo', servings: 1,
+          cost: 12.50, prepTime: 30,
+          name: 'Pechuga de pollo a la plancha con hierbas, arroz integral y ensalada de betarraga',
+          kcal: 540, protein: 36.5, lipids: 12.0, carbs: 70.0,
+          ingredients: [
+            { item: 'Pechuga de pollo sin piel ni grasa visible', qty: '130 g' },
+            { item: 'Arroz integral (peso en crudo)', qty: '65 g' },
+            { item: 'Betarraga (remolacha) cocida en cubos', qty: '80 g' },
+            { item: 'Zanahoria rallada', qty: '50 g' },
+            { item: 'Aceite de oliva extra virgen', qty: '10 ml' },
+            { item: 'Romero, tomillo y jugo de limón', qty: '8 g' }
+          ],
+          steps: [
+            'Hervir el arroz integral en abundante agua sin sal por 25 minutos y escurrir.',
+            'Marinar la pechuga de pollo con romero, tomillo y limón, y cocinar a la plancha con 5 ml de aceite de oliva.',
+            'Mezclar la betarraga y la zanahoria, aliñar con los 5 ml restantes de aceite de oliva y servir junto al pollo y arroz.'
+          ]
+        },
+        {
+          code: 'ALM-003', disease: 'Cardíacas', meal: 'Almuerzo', servings: 1,
+          cost: 8.50, prepTime: 35,
+          name: 'Guiso cardiosaludable de lentejas con vegetales y arroz blanco',
+          kcal: 550, protein: 24.0, lipids: 10.5, carbs: 89.0,
+          ingredients: [
+            { item: 'Lentejas secas hidratadas', qty: '70 g' },
+            { item: 'Arroz blanco grano largo (crudo)', qty: '45 g' },
+            { item: 'Zapallo (calabaza) en cubos', qty: '70 g' },
+            { item: 'Zanahoria y cebolla picadas', qty: '60 g' },
+            { item: 'Aceite vegetal (canola u oliva)', qty: '8 ml' },
+            { item: 'Cúrcuma, laurel y perejil fresco', qty: '3 g' }
+          ],
+          steps: [
+            'Sofreír suavemente la cebolla, zanahoria y cúrcuma en el aceite durante 4 minutos.',
+            'Añadir las lentejas escurridas, el zapallo, la hoja de laurel y agua sin sal; cocinar 25 minutos.',
+            'Acompañar con la porción de arroz cocido sin sal y espolvorear perejil picado al servir.'
+          ]
+        },
+        {
+          code: 'ALM-004', disease: 'Cardíacas', meal: 'Almuerzo', servings: 1,
+          cost: 15.00, prepTime: 30,
+          name: 'Trucha al horno con papas doradas sin sal y vainitas salteadas',
+          kcal: 530, protein: 32.0, lipids: 15.0, carbs: 65.0,
+          ingredients: [
+            { item: 'Filete de trucha limpia sin espinas', qty: '140 g' },
+            { item: 'Papa blanca mediana con piel', qty: '160 g' },
+            { item: 'Vainitas (judías verdes) troceadas', qty: '100 g' },
+            { item: 'Aceite de oliva extra virgen', qty: '10 ml' },
+            { item: 'Ajo picado, perejil y limón', qty: '10 g' }
+          ],
+          steps: [
+            'Cortar las papas en gajos, pincelar con 5 ml de aceite de oliva y hornear a 190 °C por 20 minutos.',
+            'Colocar la trucha con ajo, perejil y jugo de limón en la bandeja durante los últimos 10 minutos de horneado.',
+            'Blanquear las vainitas al vapor y saltear brevemente con el aceite restante.'
+          ]
+        },
+        {
+          code: 'ALM-005', disease: 'Cardíacas', meal: 'Almuerzo', servings: 1,
+          cost: 13.00, prepTime: 25,
+          name: 'Tallarines integrales con salsa natural de tomate, albahaca y pavo molido magro',
+          kcal: 565, protein: 33.0, lipids: 12.5, carbs: 79.0,
+          ingredients: [
+            { item: 'Pasta integral (tallarines en crudo)', qty: '75 g' },
+            { item: 'Carne de pavo molida magra', qty: '110 g' },
+            { item: 'Tomate maduro pelado y triturado', qty: '130 g' },
+            { item: 'Cebolla, ajo y albahaca fresca', qty: '35 g' },
+            { item: 'Aceite de oliva extra virgen', qty: '8 ml' }
+          ],
+          steps: [
+            'Preparar la salsa sofriendo cebolla y ajo en aceite de oliva, añadir el pavo molido y luego el tomate triturado; cocinar 15 minutos sin sal.',
+            'Hervir los tallarines integrales al dente en agua sin sal.',
+            'Mezclar la pasta con la salsa y decorar con hojas frescas de albahaca.'
+          ]
+        },
+
+        // --- CARDÍACAS: MEDIA TARDE (5) ---
+        {
+          code: 'MER.V-001', disease: 'Cardíacas', meal: 'Media Tarde', servings: 1,
+          cost: 4.00, prepTime: 8,
+          name: 'Infusión de manzanilla con tostada integral y mermelada casera de frutilla sin azúcar',
+          kcal: 155, protein: 4.2, lipids: 2.0, carbs: 30.0,
+          ingredients: [
+            { item: 'Pan integral bajo en sodio', qty: '35 g (1 rebanada)' },
+            { item: 'Frutillas trituradas reducidas con chía', qty: '45 g' },
+            { item: 'Infusión de manzanilla sin azúcar', qty: '220 ml' }
+          ],
+          steps: [
+            'Tostar la rebanada de pan integral hasta que quede crujiente.',
+            'Untar la compota/mermelada natural de frutilla y acompañar con la infusión caliente.'
+          ]
+        },
+        {
+          code: 'MER.V-002', disease: 'Cardíacas', meal: 'Media Tarde', servings: 1,
+          cost: 4.50, prepTime: 8,
+          name: 'Bastones de zanahoria y apio con crema de yogur y ciboulette',
+          kcal: 135, protein: 6.5, lipids: 3.5, carbs: 19.0,
+          ingredients: [
+            { item: 'Zanahoria fresca en bastones', qty: '90 g' },
+            { item: 'Tallos de apio limpios en bastones', qty: '70 g' },
+            { item: 'Yogur natural descremado', qty: '80 g' },
+            { item: 'Ciboulette picado y gotas de limón', qty: '5 g' }
+          ],
+          steps: [
+            'Mezclar el yogur descremado con el ciboulette picado y unas gotas de jugo de limón sin sal.',
+            'Servir la salsa en un pocillo rodeada de los bastones frescos de zanahoria y apio.'
+          ]
+        },
+        {
+          code: 'MER.V-003', disease: 'Cardíacas', meal: 'Media Tarde', servings: 1,
+          cost: 6.50, prepTime: 10,
+          name: 'Pudín de chía con bebida de almendras sin azúcar y mango',
+          kcal: 185, protein: 4.8, lipids: 8.5, carbs: 23.0,
+          ingredients: [
+            { item: 'Semillas de chía', qty: '15 g' },
+            { item: 'Bebida vegetal de almendras sin azúcar', qty: '140 ml' },
+            { item: 'Mango fresco en cubos pequeños', qty: '70 g' }
+          ],
+          steps: [
+            'Hidratar las semillas de chía en la bebida de almendras durante al menos 30 minutos removiendo para evitar grumos.',
+            'Coronarlo con los cubos frescos de mango antes de servir.'
+          ]
+        },
+        {
+          code: 'MER.V-004', disease: 'Cardíacas', meal: 'Media Tarde', servings: 1,
+          cost: 4.50, prepTime: 20,
+          name: 'Manzana asada con nueces y canela',
+          kcal: 170, protein: 3.2, lipids: 6.8, carbs: 26.0,
+          ingredients: [
+            { item: 'Manzana mediana descorazonada', qty: '140 g' },
+            { item: 'Nueces picadas sin sal', qty: '10 g' },
+            { item: 'Canela en polvo', qty: '1 g' }
+          ],
+          steps: [
+            'Retirar el corazón de la manzana sin perforar la base y rellenar con las nueces y la canela.',
+            'Hornear o cocinar tapada con un chorrito de agua durante 15 minutos hasta que esté tierna.'
+          ]
+        },
+        {
+          code: 'MER.V-005', disease: 'Cardíacas', meal: 'Media Tarde', servings: 1,
+          cost: 5.50, prepTime: 5,
+          name: 'Kéfir descremado con papaya picada y avena',
+          kcal: 165, protein: 8.0, lipids: 2.8, carbs: 27.0,
+          ingredients: [
+            { item: 'Kéfir o yogur líquido descremado', qty: '160 ml' },
+            { item: 'Papaya madura en cubos', qty: '100 g' },
+            { item: 'Hojuelas de avena', qty: '15 g' }
+          ],
+          steps: [
+            'Cortar la papaya en cubos uniformes y colocarla en un bol.',
+            'Verter el kéfir descremado frío y añadir las hojuelas de avena por encima.'
+          ]
+        },
+
+        // --- CARDÍACAS: CENA (5) ---
+        {
+          code: 'CEN-001', disease: 'Cardíacas', meal: 'Cena', servings: 1,
+          cost: 9.50, prepTime: 25,
+          name: 'Crema de zapallo y zanahoria con pechuga de pollo desmenuzada',
+          kcal: 380, protein: 28.0, lipids: 9.5, carbs: 45.0,
+          ingredients: [
+            { item: 'Zapallo macre en trozos', qty: '160 g' },
+            { item: 'Zanahoria pelada', qty: '70 g' },
+            { item: 'Pechuga de pollo cocida desmenuzada', qty: '90 g' },
+            { item: 'Aceite de oliva extra virgen', qty: '7 ml' },
+            { item: 'Nuez moscada y cebolla blanca', qty: '25 g' }
+          ],
+          steps: [
+            'Hervir el zapallo, la zanahoria y la cebolla en agua sin sal durante 18 minutos.',
+            'Licuar los vegetales con parte del caldo de cocción y una pizca de nuez moscada.',
+            'Servir caliente incorporando el pollo desmenuzado y el aceite de oliva en crudo.'
+          ]
+        },
+        {
+          code: 'CEN-002', disease: 'Cardíacas', meal: 'Cena', servings: 1,
+          cost: 13.50, prepTime: 22,
+          name: 'Filete de merluza al papillote con calabacín y papa cocida',
+          kcal: 375, protein: 29.5, lipids: 8.8, carbs: 44.0,
+          ingredients: [
+            { item: 'Filete de merluza sin espinas', qty: '140 g' },
+            { item: 'Calabacín (zucchini) en medias lunas', qty: '100 g' },
+            { item: 'Papa mediana cocida al vapor', qty: '130 g' },
+            { item: 'Aceite de oliva extra virgen', qty: '7 ml' },
+            { item: 'Limón, pimienta y perejil', qty: '8 g' }
+          ],
+          steps: [
+            'Colocar sobre papel vegetal el calabacín, el filete de merluza, el aceite de oliva, limón y perejil; cerrar herméticamente.',
+            'Hornear a 180 °C durante 14 minutos y acompañar con la papa cocida al vapor.'
+          ]
+        },
+        {
+          code: 'CEN-003', disease: 'Cardíacas', meal: 'Cena', servings: 1,
+          cost: 11.50, prepTime: 18,
+          name: 'Ensalada tibia de quinua, atún al agua lavado, pepino y palta',
+          kcal: 410, protein: 27.0, lipids: 14.5, carbs: 43.0,
+          ingredients: [
+            { item: 'Quinua cocida sin sal', qty: '110 g (peso cocido)' },
+            { item: 'Lomo de atún al agua escurrido y enjuagado', qty: '85 g' },
+            { item: 'Aguacate (palta) en cubos', qty: '45 g' },
+            { item: 'Pepino y tomate cherry', qty: '90 g' },
+            { item: 'Aceite de oliva y jugo de limón', qty: '8 ml' }
+          ],
+          steps: [
+            'Enjuagar el atún al agua bajo chorro frío para reducir su contenido residual de sodio y escurrir bien.',
+            'Mezclar la quinua tibia con el pepino, tomate, palta y el atún.',
+            'Aliñar con aceite de oliva y jugo de limón justo antes de servir.'
+          ]
+        },
+        {
+          code: 'CEN-004', disease: 'Cardíacas', meal: 'Cena', servings: 1,
+          cost: 7.50, prepTime: 22,
+          name: 'Tortilla española ligera al horno de claras, papa y cebolla',
+          kcal: 365, protein: 21.0, lipids: 9.0, carbs: 49.0,
+          ingredients: [
+            { item: 'Papa blanca en láminas finas', qty: '150 g' },
+            { item: 'Claras de huevo', qty: '120 g (4 unidades)' },
+            { item: 'Huevo entero', qty: '55 g (1 unidad)' },
+            { item: 'Cebolla blanca en pluma', qty: '45 g' },
+            { item: 'Aceite de oliva extra virgen', qty: '6 ml' }
+          ],
+          steps: [
+            'Cocinar al vapor o microondas las láminas de papa y la cebolla hasta que estén tiernas.',
+            'Mezclar con el huevo y las claras batidas sin sal, verter en molde pincelado con aceite de oliva.',
+            'Hornear a 180 °C por 15 minutos hasta dorar ligeramente.'
+          ]
+        },
+        {
+          code: 'CEN-005', disease: 'Cardíacas', meal: 'Cena', servings: 1,
+          cost: 10.50, prepTime: 20,
+          name: 'Salteado suave de tofu firme con brócoli, pimentón y arroz integral',
+          kcal: 390, protein: 20.5, lipids: 12.5, carbs: 49.0,
+          ingredients: [
+            { item: 'Tofu firme escurrido en cubos', qty: '110 g' },
+            { item: 'Arroz integral cocido sin sal', qty: '110 g' },
+            { item: 'Brócoli y pimentón rojo en tiras', qty: '120 g' },
+            { item: 'Aceite de ajonjolí u oliva', qty: '7 ml' },
+            { item: 'Jengibre fresco rallado y ajo', qty: '4 g' }
+          ],
+          steps: [
+            'Dorar los cubos de tofu en sartén antiadherente con el aceite y el jengibre rallado.',
+            'Incorporar el brócoli previamente blanqueado y el pimentón; saltear 4 minutos.',
+            'Servir acompañado de la porción de arroz integral tibio.'
+          ]
+        },
+
+        // --- RESPIRATORIAS: DESAYUNO (5) ---
+        {
+          code: 'DES-006', disease: 'Respiratorias', meal: 'Desayuno', servings: 1,
+          cost: 8.50, prepTime: 10,
+          name: 'Huevos revueltos cremosos con queso fresco, aguacate y pan integral',
+          kcal: 455, protein: 24.5, lipids: 22.0, carbs: 39.0,
+          ingredients: [
+            { item: 'Huevos enteros', qty: '110 g (2 unidades)' },
+            { item: 'Queso fresco tierno bajo en grasa', qty: '35 g' },
+            { item: 'Aguacate maduro', qty: '50 g' },
+            { item: 'Pan integral blando', qty: '55 g' },
+            { item: 'Aceite de oliva extra virgen', qty: '6 ml' }
+          ],
+          steps: [
+            'Batir los huevos y cuajarlos a fuego muy suave con el aceite de oliva y el queso fresco en cubitos para lograr textura húmeda y fácil de masticar.',
+            'Acompañar con el aguacate laminado y el pan integral tibio.'
+          ]
+        },
+        {
+          code: 'DES-007', disease: 'Respiratorias', meal: 'Desayuno', servings: 1,
+          cost: 9.50, prepTime: 5,
+          name: 'Batido hiperproteico de yogur griego, mantequilla de maní y frutos rojos',
+          kcal: 470, protein: 26.0, lipids: 21.5, carbs: 43.0,
+          ingredients: [
+            { item: 'Yogur griego natural sin azúcar', qty: '180 g' },
+            { item: 'Leche semidescremada', qty: '120 ml' },
+            { item: 'Mantequilla de maní natural 100%', qty: '20 g' },
+            { item: 'Frutillas y arándanos', qty: '90 g' },
+            { item: 'Avena molida', qty: '20 g' }
+          ],
+          steps: [
+            'Colocar todos los ingredientes en la licuadora y procesar hasta obtener una bebida cremosa y sin grumos.',
+            'Servir en vaso mediano para facilitar una ingesta rápida sin fatiga respiratoria.'
+          ]
+        },
+        {
+          code: 'DES-008', disease: 'Respiratorias', meal: 'Desayuno', servings: 1,
+          cost: 7.50, prepTime: 12,
+          name: 'Porridge cremoso de avena con leche, almendras molidas y huevo pochado',
+          kcal: 460, protein: 22.0, lipids: 19.5, carbs: 49.0,
+          ingredients: [
+            { item: 'Avena en hojuelas', qty: '45 g' },
+            { item: 'Leche semidescremada', qty: '220 ml' },
+            { item: 'Almendras molidas', qty: '18 g' },
+            { item: 'Huevo entero pochado', qty: '55 g (1 unidad)' },
+            { item: 'Aceite de oliva suave', qty: '4 ml' }
+          ],
+          steps: [
+            'Cocinar la avena con la leche y las almendras molidas hasta lograr una papilla cremosa.',
+            'Servir aparte o sobre tostada suave el huevo pochado con unas gotas de aceite de oliva.'
+          ]
+        },
+        {
+          code: 'DES-009', disease: 'Respiratorias', meal: 'Desayuno', servings: 1,
+          cost: 8.00, prepTime: 15,
+          name: 'Panqueques esponjosos de avena, plátano y requesón con aceite de coco/oliva',
+          kcal: 450, protein: 21.5, lipids: 17.0, carbs: 52.0,
+          ingredients: [
+            { item: 'Huevo entero', qty: '55 g (1 unidad)' },
+            { item: 'Requesón o ricota', qty: '65 g' },
+            { item: 'Harina de avena', qty: '40 g' },
+            { item: 'Plátano maduro triturado', qty: '60 g' },
+            { item: 'Aceite de oliva suave para cocinar', qty: '8 ml' }
+          ],
+          steps: [
+            'Licuar el huevo, requesón, harina de avena y plátano hasta obtener una mezcla homogénea.',
+            'Cocinar panqueques pequeños y blandos en sartén antiadherente engrasada con aceite de oliva.'
+          ]
+        },
+        {
+          code: 'DES-010', disease: 'Respiratorias', meal: 'Desayuno', servings: 1,
+          cost: 14.00, prepTime: 12,
+          name: 'Tostada blanda con salmón ahumado bajo en sal, queso crema y huevo cocido',
+          kcal: 465, protein: 27.0, lipids: 22.5, carbs: 38.0,
+          ingredients: [
+            { item: 'Pan de molde integral sin corteza', qty: '55 g' },
+            { item: 'Salmón ahumado bajo en sodio', qty: '50 g' },
+            { item: 'Queso crema ligero', qty: '25 g' },
+            { item: 'Huevo cocido picado', qty: '55 g' },
+            { item: 'Aceite de oliva extra virgen', qty: '6 ml' }
+          ],
+          steps: [
+            'Untar el pan blando con el queso crema y colocar las láminas de salmón.',
+            'Añadir el huevo cocido picado y rociar con aceite de oliva para mejorar la densidad energética.'
+          ]
+        },
+
+        // --- RESPIRATORIAS: MEDIA MAÑANA (5) ---
+        {
+          code: 'MER.M-006', disease: 'Respiratorias', meal: 'Media Mañana', servings: 1,
+          cost: 6.50, prepTime: 5,
+          name: 'Mousse proteica de yogur griego con nueces picadas y miel',
+          kcal: 235, protein: 12.5, lipids: 13.0, carbs: 17.0,
+          ingredients: [
+            { item: 'Yogur griego natural', qty: '130 g' },
+            { item: 'Nueces troceadas', qty: '16 g' },
+            { item: 'Miel de abeja pura', qty: '8 g' }
+          ],
+          steps: [
+            'Batir manualmente el yogur griego con la miel hasta darle textura aireada.',
+            'Incorporar las nueces finamente picadas y servir en copa pequeña.'
+          ]
+        },
+        {
+          code: 'MER.M-007', disease: 'Respiratorias', meal: 'Media Mañana', servings: 1,
+          cost: 6.00, prepTime: 6,
+          name: 'Crema de aguacate y cacao con semillas de chía',
+          kcal: 240, protein: 5.0, lipids: 17.5, carbs: 16.5,
+          ingredients: [
+            { item: 'Aguacate maduro', qty: '85 g' },
+            { item: 'Cacao puro en polvo', qty: '8 g' },
+            { item: 'Leche semidescremada', qty: '40 ml' },
+            { item: 'Semillas de chía', qty: '6 g' },
+            { item: 'Miel o dátiles triturados', qty: '10 g' }
+          ],
+          steps: [
+            'Procesar el aguacate con el cacao, la leche y la miel hasta lograr una mousse sedosa.',
+            'Decorar con las semillas de chía y servir fría o a temperatura ambiente.'
+          ]
+        },
+        {
+          code: 'MER.M-008', disease: 'Respiratorias', meal: 'Media Mañana', servings: 1,
+          cost: 7.50, prepTime: 8,
+          name: 'Rollitos de pechuga de pavo rellenos de queso crema y palta',
+          kcal: 225, protein: 16.5, lipids: 14.5, carbs: 7.0,
+          ingredients: [
+            { item: 'Láminas de pechuga de pavo cocida', qty: '75 g' },
+            { item: 'Aguacate en tiras', qty: '45 g' },
+            { item: 'Queso crema suave', qty: '25 g' }
+          ],
+          steps: [
+            'Extender las láminas de pavo, untar el queso crema y colocar una tira de aguacate.',
+            'Enrollar firmemente y cortar en bocados fáciles de ingerir.'
+          ]
+        },
+        {
+          code: 'MER.M-009', disease: 'Respiratorias', meal: 'Media Mañana', servings: 1,
+          cost: 5.00, prepTime: 8,
+          name: 'Batido tibio de leche dorada (cúrcuma, jengibre) con almendras',
+          kcal: 220, protein: 9.5, lipids: 12.0, carbs: 18.5,
+          ingredients: [
+            { item: 'Leche semidescremada', qty: '200 ml' },
+            { item: 'Crema o pasta de almendras', qty: '15 g' },
+            { item: 'Cúrcuma en polvo y jengibre rallado', qty: '2 g' },
+            { item: 'Miel de abeja', qty: '6 g' }
+          ],
+          steps: [
+            'Calentar la leche con la cúrcuma y el jengibre sin llegar a ebullición.',
+            'Licuar con la pasta de almendras y la miel; servir tibio.'
+          ]
+        },
+        {
+          code: 'MER.M-010', disease: 'Respiratorias', meal: 'Media Mañana', servings: 1,
+          cost: 6.00, prepTime: 10,
+          name: 'Hummus cremoso de garbanzo con aceite de oliva y pan pita blando',
+          kcal: 245, protein: 8.5, lipids: 11.5, carbs: 27.0,
+          ingredients: [
+            { item: 'Garbanzos cocidos pelados', qty: '70 g' },
+            { item: 'Aceite de oliva extra virgen', qty: '10 ml' },
+            { item: 'Pan pita integral blando', qty: '35 g' },
+            { item: 'Jugo de limón', qty: '5 ml' }
+          ],
+          steps: [
+            'Triturar los garbanzos con el aceite de oliva y el jugo de limón hasta obtener una crema suave.',
+            'Acompañar con triángulos de pan pita blando.'
+          ]
+        },
+
+        // --- RESPIRATORIAS: ALMUERZO (5) ---
+        {
+          code: 'ALM-006', disease: 'Respiratorias', meal: 'Almuerzo', servings: 1,
+          cost: 19.50, prepTime: 25,
+          name: 'Salmón a la plancha con puré cremoso de papa y aceite de oliva y espárragos',
+          kcal: 640, protein: 38.0, lipids: 29.0, carbs: 56.0,
+          ingredients: [
+            { item: 'Filete de salmón fresco', qty: '150 g' },
+            { item: 'Papa blanca cocida', qty: '180 g' },
+            { item: 'Aceite de oliva extra virgen', qty: '15 ml' },
+            { item: 'Leche semidescremada tibia', qty: '40 ml' },
+            { item: 'Puntas de espárragos tiernos', qty: '90 g' }
+          ],
+          steps: [
+            'Prensar la papa cocida y mezclar con la leche tibia y 10 ml de aceite de oliva para lograr un puré suave.',
+            'Cocinar el salmón y las puntas de espárragos a la plancha con los 5 ml restantes de aceite.'
+          ]
+        },
+        {
+          code: 'ALM-007', disease: 'Respiratorias', meal: 'Almuerzo', servings: 1,
+          cost: 13.50, prepTime: 30,
+          name: 'Estofado tierno de pollo con almendras, zanahoria y arroz basmati',
+          kcal: 635, protein: 40.0, lipids: 24.5, carbs: 63.0,
+          ingredients: [
+            { item: 'Muslo o pechuga de pollo deshuesada en cubos', qty: '150 g' },
+            { item: 'Arroz basmati (peso en crudo)', qty: '55 g' },
+            { item: 'Almendras molidas o laminadas', qty: '18 g' },
+            { item: 'Zanahoria en rodajas finas', qty: '80 g' },
+            { item: 'Aceite de oliva extra virgen', qty: '12 ml' }
+          ],
+          steps: [
+            'Estofar el pollo con la zanahoria y las almendras molidas en aceite de oliva y caldo suave durante 20 minutos hasta que quede muy tierno.',
+            'Servir acompañado de arroz basmati cocido suelto.'
+          ]
+        },
+        {
+          code: 'ALM-008', disease: 'Respiratorias', meal: 'Almuerzo', servings: 1,
+          cost: 14.00, prepTime: 30,
+          name: 'Albóndigas suaves de pavo en salsa de calabaza y quinua con aceite de oliva',
+          kcal: 625, protein: 37.5, lipids: 23.0, carbs: 66.0,
+          ingredients: [
+            { item: 'Carne de pavo molida', qty: '140 g' },
+            { item: 'Quinua cocida', qty: '130 g' },
+            { item: 'Puré de calabaza para la salsa', qty: '120 g' },
+            { item: 'Aceite de oliva extra virgen', qty: '14 ml' },
+            { item: 'Huevo batido (para ligar albóndigas)', qty: '25 g' }
+          ],
+          steps: [
+            'Formar albóndigas pequeñas y tiernas con el pavo y el huevo; cocerlas directamente en la salsa ligera de calabaza.',
+            'Acompañar con la quinua cocida enriquecida con el aceite de oliva en crudo.'
+          ]
+        },
+        {
+          code: 'ALM-009', disease: 'Respiratorias', meal: 'Almuerzo', servings: 1,
+          cost: 15.50, prepTime: 25,
+          name: 'Filete de pescado blanco en salsa de aguacate y cilantro con camote asado',
+          kcal: 630, protein: 36.0, lipids: 25.5, carbs: 64.0,
+          ingredients: [
+            { item: 'Filete de pescado blanco (corvina o merluza)', qty: '150 g' },
+            { item: 'Camote (batata) amarillo horneado', qty: '170 g' },
+            { item: 'Aguacate maduro', qty: '65 g' },
+            { item: 'Aceite de oliva extra virgen', qty: '12 ml' },
+            { item: 'Yogur natural y cilantro fresco', qty: '30 g' }
+          ],
+          steps: [
+            'Cocinar el filete de pescado al vapor o plancha suave.',
+            'Licuar el aguacate con el yogur, cilantro y aceite de oliva para cubrir el pescado y servir con camote asado blando.'
+          ]
+        },
+        {
+          code: 'ALM-010', disease: 'Respiratorias', meal: 'Almuerzo', servings: 1,
+          cost: 14.50, prepTime: 30,
+          name: 'Risotto cremoso de pollo, champiñones y queso parmesano con aceite de oliva',
+          kcal: 650, protein: 35.0, lipids: 24.0, carbs: 73.0,
+          ingredients: [
+            { item: 'Arroz arbóreo o grano corto (crudo)', qty: '65 g' },
+            { item: 'Pechuga de pollo en cubos pequeños', qty: '120 g' },
+            { item: 'Champiñones laminados', qty: '70 g' },
+            { item: 'Queso parmesano rallado', qty: '20 g' },
+            { item: 'Aceite de oliva extra virgen', qty: '12 ml' }
+          ],
+          steps: [
+            'Cocinar el arroz añadiendo caldo caliente de ave poco a poco junto con el pollo y los champiñones.',
+            'Mantecar al final fuera del fuego con el aceite de oliva y el queso parmesano.'
+          ]
+        },
+
+        // --- RESPIRATORIAS: MEDIA TARDE (5) ---
+        {
+          code: 'MER.V-006', disease: 'Respiratorias', meal: 'Media Tarde', servings: 1,
+          cost: 5.50, prepTime: 30,
+          name: 'Flan casero de huevo y leche semidescremada sin caramelo',
+          kcal: 225, protein: 12.0, lipids: 9.5, carbs: 23.0,
+          ingredients: [
+            { item: 'Huevo entero', qty: '55 g (1 unidad)' },
+            { item: 'Leche semidescremada', qty: '160 ml' },
+            { item: 'Azúcar mascabo o miel', qty: '12 g' },
+            { item: 'Esencia de vainilla', qty: '2 ml' }
+          ],
+          steps: [
+            'Batir el huevo con la leche, la vainilla y el azúcar mascabo sin generar exceso de espuma.',
+            'Cuajar a baño María durante 25 minutos y servir frío o templado.'
+          ]
+        },
+        {
+          code: 'MER.V-007', disease: 'Respiratorias', meal: 'Media Tarde', servings: 1,
+          cost: 7.00, prepTime: 5,
+          name: 'Smoothie energético de mango, yogur griego y aceite de linaza',
+          kcal: 250, protein: 11.5, lipids: 11.0, carbs: 26.0,
+          ingredients: [
+            { item: 'Yogur griego natural', qty: '120 g' },
+            { item: 'Pulpa de mango maduro', qty: '90 g' },
+            { item: 'Aceite de linaza o semillas molidas', qty: '8 g' },
+            { item: 'Agua o leche fluida', qty: '60 ml' }
+          ],
+          steps: [
+            'Licuar todos los ingredientes hasta lograr una consistencia homogénea y suave.',
+            'Servir en vaso pequeño para facilitar su consumo completo.'
+          ]
+        },
+        {
+          code: 'MER.V-008', disease: 'Respiratorias', meal: 'Media Tarde', servings: 1,
+          cost: 6.00, prepTime: 12,
+          name: 'Crema tibia de calabaza y queso ricota con semillas de sésamo',
+          kcal: 230, protein: 11.0, lipids: 11.5, carbs: 20.5,
+          ingredients: [
+            { item: 'Puré de calabaza cocida', qty: '130 g' },
+            { item: 'Queso ricota', qty: '60 g' },
+            { item: 'Aceite de oliva extra virgen', qty: '6 ml' },
+            { item: 'Semillas de sésamo tostado', qty: '5 g' }
+          ],
+          steps: [
+            'Licuar la calabaza caliente con el queso ricota y el aceite de oliva hasta obtener una crema aterciopelada.',
+            'Servir en taza y espolvorear las semillas de sésamo.'
+          ]
+        },
+        {
+          code: 'MER.V-009', disease: 'Respiratorias', meal: 'Media Tarde', servings: 1,
+          cost: 6.50, prepTime: 15,
+          name: 'Compota de pera con queso mascarpone/crema y nueces molidas',
+          kcal: 245, protein: 5.5, lipids: 14.5, carbs: 23.0,
+          ingredients: [
+            { item: 'Pera cocida al vapor sin piel', qty: '120 g' },
+            { item: 'Queso crema o mascarpone suave', qty: '25 g' },
+            { item: 'Nueces finamente molidas', qty: '12 g' }
+          ],
+          steps: [
+            'Triturar la pera cocida hasta hacerla puré tibio.',
+            'Coronar con una cucharada de queso crema y las nueces molidas.'
+          ]
+        },
+        {
+          code: 'MER.V-010', disease: 'Respiratorias', meal: 'Media Tarde', servings: 1,
+          cost: 6.50, prepTime: 12,
+          name: 'Sándwich blando de pan integral sin corteza con pasta de huevo y aguacate',
+          kcal: 255, protein: 11.5, lipids: 13.5, carbs: 22.0,
+          ingredients: [
+            { item: 'Pan de molde integral sin corteza', qty: '40 g' },
+            { item: 'Huevo duro rallado fino', qty: '55 g' },
+            { item: 'Aguacate triturado', qty: '45 g' }
+          ],
+          steps: [
+            'Mezclar el huevo duro rallado con el aguacate hasta obtener una pasta untable muy suave.',
+            'Rellenar el pan blando y cortar en cuartos.'
+          ]
+        },
+
+        // --- RESPIRATORIAS: CENA (5) ---
+        {
+          code: 'CEN-006', disease: 'Respiratorias', meal: 'Cena', servings: 1,
+          cost: 11.00, prepTime: 22,
+          name: 'Crema de brócoli y queso con pechuga de pollo tierna y aceite de oliva',
+          kcal: 485, protein: 34.0, lipids: 22.0, carbs: 37.0,
+          ingredients: [
+            { item: 'Brócoli cocido al vapor', qty: '140 g' },
+            { item: 'Papa blanca cocida', qty: '110 g' },
+            { item: 'Pechuga de pollo cocida en tiras finas', qty: '110 g' },
+            { item: 'Queso fresco o mozzarella ligero', qty: '30 g' },
+            { item: 'Aceite de oliva extra virgen', qty: '12 ml' }
+          ],
+          steps: [
+            'Licuar el brócoli y la papa con caldo suave, el queso y el aceite de oliva hasta lograr una crema densa.',
+            'Servir caliente con las tiras tiernas de pollo.'
+          ]
+        },
+        {
+          code: 'CEN-007', disease: 'Respiratorias', meal: 'Cena', servings: 1,
+          cost: 9.50, prepTime: 18,
+          name: 'Tortilla francesa jugosa de queso y espinaca con puré de camote',
+          kcal: 475, protein: 25.0, lipids: 21.5, carbs: 45.0,
+          ingredients: [
+            { item: 'Huevos enteros', qty: '110 g (2 unidades)' },
+            { item: 'Queso fresco tierno', qty: '35 g' },
+            { item: 'Espinaca cocida picada', qty: '50 g' },
+            { item: 'Puré de camote cocido', qty: '140 g' },
+            { item: 'Aceite de oliva extra virgen', qty: '10 ml' }
+          ],
+          steps: [
+            'Preparar una tortilla francesa jugosa rellena de queso fresco y espinaca picada.',
+            'Acompañar con el puré de camote aderezado con aceite de oliva.'
+          ]
+        },
+        {
+          code: 'CEN-008', disease: 'Respiratorias', meal: 'Cena', servings: 1,
+          cost: 14.00, prepTime: 22,
+          name: 'Filete de merluza en salsa suave de almendras con calabacín al vapor',
+          kcal: 490, protein: 35.5, lipids: 23.5, carbs: 34.0,
+          ingredients: [
+            { item: 'Filete de merluza', qty: '140 g' },
+            { item: 'Almendras molidas', qty: '22 g' },
+            { item: 'Leche semidescremada', qty: '80 ml' },
+            { item: 'Calabacín cocido al vapor', qty: '120 g' },
+            { item: 'Aceite de oliva extra virgen', qty: '10 ml' },
+            { item: 'Pan tostado blando de acompañamiento', qty: '35 g' }
+          ],
+          steps: [
+            'Cocinar la merluza en una salsa suave elaborada con leche, almendras molidas y aceite de oliva.',
+            'Servir junto con el calabacín al vapor y el pan blando.'
+          ]
+        },
+        {
+          code: 'CEN-009', disease: 'Respiratorias', meal: 'Cena', servings: 1,
+          cost: 9.00, prepTime: 18,
+          name: 'Sopa cremosa de pollo, fideos cabello de ángel y huevo hilado',
+          kcal: 465, protein: 32.0, lipids: 17.5, carbs: 44.0,
+          ingredients: [
+            { item: 'Caldo de ave desgrasado', qty: '280 ml' },
+            { item: 'Pechuga de pollo picada fina', qty: '100 g' },
+            { item: 'Fideos cabello de ángel (crudo)', qty: '40 g' },
+            { item: 'Huevo batido (hilado en el caldo)', qty: '55 g' },
+            { item: 'Aceite de oliva extra virgen', qty: '10 ml' }
+          ],
+          steps: [
+            'Hervir el caldo con el pollo picado y los fideos durante 6 minutos.',
+            'Verter el huevo batido en hilo removiendo suavemente, apagar el fuego y añadir el aceite de oliva.'
+          ]
+        },
+        {
+          code: 'CEN-010', disease: 'Respiratorias', meal: 'Cena', servings: 1,
+          cost: 12.00, prepTime: 20,
+          name: 'Pastel suave de papa y atún con aguacate',
+          kcal: 495, protein: 31.0, lipids: 22.0, carbs: 43.0,
+          ingredients: [
+            { item: 'Puré de papa cocida', qty: '160 g' },
+            { item: 'Atún en aceite de oliva escurrido', qty: '95 g' },
+            { item: 'Aguacate laminado', qty: '55 g' },
+            { item: 'Aceite de oliva extra virgen', qty: '8 ml' }
+          ],
+          steps: [
+            'Formar una base con la mitad del puré de papa, rellenar con el atún desmenuzado y cubrir con el resto del puré.',
+            'Servir templado con láminas de aguacate y un hilo de aceite de oliva.'
+          ]
+        }
+      ];
+
+      return data.map((item, idx) => ({
+        id: 'rec-' + (idx + 1),
+        photoDataUrl: '',
+        ...item
+      }));
+    }
+
+    // =========================================================================
+    // 4. PERSISTENCIA EN LOCALSTORAGE Y CARGA INICIAL
+    // =========================================================================
+    function loadState() {
+      try {
+        const storedRecipes = localStorage.getItem(STORAGE_KEYS.RECIPES);
+        if (storedRecipes) {
+          const parsed = JSON.parse(storedRecipes);
+          const defaults = buildInitialRecipes();
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            recipes = parsed.map(r => {
+              const match = defaults.find(d => d.code === r.code);
+              return {
+                ...r,
+                cost: r.cost !== undefined ? r.cost : (match ? match.cost : 8.50),
+                prepTime: r.prepTime !== undefined ? r.prepTime : (match ? match.prepTime : 15)
+              };
+            });
+          } else {
+            recipes = defaults;
+          }
+        } else {
+          recipes = buildInitialRecipes();
+          saveRecipesToStorage();
+        }
+      } catch (e) {
+        recipes = buildInitialRecipes();
+      }
+
+      try {
+        const storedMol = localStorage.getItem(STORAGE_KEYS.MOLECULES);
+        molecules = storedMol ? JSON.parse(storedMol) : getDefaultMolecules();
+      } catch (e) {
+        molecules = getDefaultMolecules();
+      }
+
+      try {
+        const storedGroup = localStorage.getItem(STORAGE_KEYS.GROUP_INFO);
+        if (storedGroup) {
+          const g = JSON.parse(storedGroup);
+          if (g.subject) document.getElementById('inputSubject').value = g.subject;
+          if (g.professor) document.getElementById('inputProfessor').value = g.professor;
+          if (g.members) document.getElementById('inputMembers').value = g.members;
+        }
+      } catch (e) {
+        // Ignorar si no hay datos previos
+      }
+    }
+
+    function saveRecipesToStorage() {
+      try {
+        localStorage.setItem(STORAGE_KEYS.RECIPES, JSON.stringify(recipes));
+      } catch (e) {
+        showToast('No se pudo guardar en el almacenamiento local (espacio lleno).');
+      }
+    }
+
+    function saveAllRecipeChanges() {
+      saveRecipesToStorage();
+      if (currentView === 'ficha' && currentRecipeId) {
+        renderRecipeDetail(currentRecipeId);
+      } else {
+        renderRecipes();
+      }
+      showToast('Todos los cambios realizados en las recetas han sido guardados.');
+    }
+
+    function saveGroupInfo() {
+      const payload = {
+        subject: document.getElementById('inputSubject').value.trim(),
+        professor: document.getElementById('inputProfessor').value.trim(),
+        members: document.getElementById('inputMembers').value.trim()
+      };
+      localStorage.setItem(STORAGE_KEYS.GROUP_INFO, JSON.stringify(payload));
+      showToast('Datos de integrantes y docente guardados correctamente.');
+    }
+
+    function saveCaloricMolecules() {
+      ['Cardíacas', 'Respiratorias'].forEach(key => {
+        const kcal = Number(document.getElementById(`mol-kcal-${key}`).value) || 1800;
+        const choPct = Number(document.getElementById(`mol-cho-${key}`).value) || 50;
+        const proPct = Number(document.getElementById(`mol-pro-${key}`).value) || 20;
+        const fatPct = Number(document.getElementById(`mol-fat-${key}`).value) || 30;
+        const notes = document.getElementById(`mol-notes-${key}`).value.trim();
+
+        molecules[key] = {
+          ...molecules[key],
+          kcal,
+          choPct,
+          proPct,
+          fatPct,
+          notes
+        };
+      });
+
+      localStorage.setItem(STORAGE_KEYS.MOLECULES, JSON.stringify(molecules));
+      renderMolecules();
+      showToast('Moléculas calóricas actualizadas y guardadas.');
+    }
+
+    // =========================================================================
+    // 5. NAVEGACIÓN ENTRE VISTAS
+    // =========================================================================
+    function navigateTo(view, diseaseFilter = null, mealFilter = null) {
+      currentView = view;
+
+      document.getElementById('view-inicio').classList.toggle('hidden', view !== 'inicio');
+      document.getElementById('view-menu').classList.toggle('hidden', view !== 'menu');
+      document.getElementById('view-ficha').classList.toggle('hidden', view !== 'ficha');
+
+      if (view === 'menu') {
+        if (diseaseFilter) selectedDisease = diseaseFilter;
+        if (mealFilter) selectedMeal = mealFilter;
+        updateFilterButtons();
+        renderMolecules();
+        renderRecipes();
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function openRecipeDetail(recipeId) {
+      currentRecipeId = recipeId;
+      renderRecipeDetail(recipeId);
+      navigateTo('ficha');
+    }
+
+    function showToast(msg) {
+      const banner = document.getElementById('toastBanner');
+      document.getElementById('toastMessage').textContent = msg;
+      banner.classList.remove('hidden');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        banner.classList.add('hidden');
+      }, 3200);
+    }
+
+    // =========================================================================
+    // 6. RENDERIZADO DE MOLÉCULAS CALÓRICAS, FILTROS Y TARJETAS DE RECETAS
+    // =========================================================================
+    function renderMolecules() {
+      const container = document.getElementById('moleculesGrid');
+      const entries = [
+        { key: 'Cardíacas', badge: 'bg-rose-100 text-rose-800 border-rose-200', border: 'border-rose-200/80' },
+        { key: 'Respiratorias', badge: 'bg-blue-100 text-blue-800 border-blue-200', border: 'border-blue-200/80' }
+      ];
+
+      container.innerHTML = entries.map(({ key, badge, border }) => {
+        const m = molecules[key];
+        const choG = Math.round((m.kcal * (m.choPct / 100)) / 4);
+        const proG = Math.round((m.kcal * (m.proPct / 100)) / 4);
+        const fatG = Math.round((m.kcal * (m.fatPct / 100)) / 9);
+        const sumPct = m.choPct + m.proPct + m.fatPct;
+
+        return `
+          <div class="rounded-2xl border ${border} bg-white p-5 shadow-sm space-y-4">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <span class="rounded-full border px-3 py-1 text-xs font-bold ${badge}">${escapeHtml(m.title)}</span>
+              <span class="text-xs font-semibold ${sumPct === 100 ? 'text-teal-700' : 'text-amber-600'}">
+                Suma: ${sumPct}%
+              </span>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 sm:grid-cols-4">
+              <div class="rounded-xl bg-slate-50 p-2.5 border border-slate-200/70">
+                <label class="block text-[11px] font-bold uppercase text-slate-500">VCT (kcal)</label>
+                <input id="mol-kcal-${key}" type="number" value="${m.kcal}" class="mt-1 w-full rounded-lg border border-slate-300 bg-white px-2 py-1 text-sm font-bold text-slate-900" />
+              </div>
+              <div class="rounded-xl bg-slate-50 p-2.5 border border-slate-200/70">
+                <label class="block text-[11px] font-bold uppercase text-slate-500">CHO (% / g)</label>
+                <div class="mt-1 flex items-center gap-1">
+                  <input id="mol-cho-${key}" type="number" value="${m.choPct}" class="w-14 rounded-lg border border-slate-300 bg-white px-2 py-1 text-sm font-bold text-slate-900" />
+                  <span class="text-xs font-semibold text-slate-500">${choG}g</span>
+                </div>
+              </div>
+              <div class="rounded-xl bg-slate-50 p-2.5 border border-slate-200/70">
+                <label class="block text-[11px] font-bold uppercase text-slate-500">PRO (% / g)</label>
+                <div class="mt-1 flex items-center gap-1">
+                  <input id="mol-pro-${key}" type="number" value="${m.proPct}" class="w-14 rounded-lg border border-slate-300 bg-white px-2 py-1 text-sm font-bold text-slate-900" />
+                  <span class="text-xs font-semibold text-slate-500">${proG}g</span>
+                </div>
+              </div>
+              <div class="rounded-xl bg-slate-50 p-2.5 border border-slate-200/70">
+                <label class="block text-[11px] font-bold uppercase text-slate-500">Grasas (% / g)</label>
+                <div class="mt-1 flex items-center gap-1">
+                  <input id="mol-fat-${key}" type="number" value="${m.fatPct}" class="w-14 rounded-lg border border-slate-300 bg-white px-2 py-1 text-sm font-bold text-slate-900" />
+                  <span class="text-xs font-semibold text-slate-500">${fatG}g</span>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <label class="mb-1 block text-[11px] font-bold uppercase text-slate-500">Lineamientos Dietoterapéuticos</label>
+              <textarea id="mol-notes-${key}" rows="2" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs leading-relaxed text-slate-700 focus:border-teal-600 focus:bg-white focus:outline-none">${escapeHtml(m.notes)}</textarea>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function setDiseaseFilter(disease) {
+      selectedDisease = disease;
+      updateFilterButtons();
+      renderRecipes();
+    }
+
+    function setMealFilter(meal) {
+      selectedMeal = meal;
+      updateFilterButtons();
+      renderRecipes();
+    }
+
+    function resetFilters() {
+      selectedDisease = 'Todas';
+      selectedMeal = 'Todos';
+      const codeInput = document.getElementById('codeSearchInput');
+      if (codeInput) codeInput.value = '';
+      document.getElementById('searchInput').value = '';
+      updateFilterButtons();
+      renderRecipes();
+    }
+
+    function getMealDisplay(meal) {
+      return MEAL_DISPLAY_MAP[meal] || meal;
+    }
+
+    function getNextCodeForMeal(meal) {
+      const prefix = MEAL_PREFIX_MAP[meal] || 'REC';
+      let maxNum = 0;
+      recipes.forEach(r => {
+        if (r.code && r.code.startsWith(prefix + '-')) {
+          const numPart = parseInt(r.code.split('-')[1], 10);
+          if (!isNaN(numPart) && numPart > maxNum) {
+            maxNum = numPart;
+          }
+        }
+      });
+      return `${prefix}-${String(maxNum + 1).padStart(3, '0')}`;
+    }
+
+    function updateFilterButtons() {
+      const countEl = document.getElementById('count-Todas');
+      if (countEl) countEl.textContent = recipes.length;
+
+      ['Todas', 'Cardíacas', 'Respiratorias'].forEach(d => {
+        const btn = document.getElementById(`tab-${d}`);
+        if (!btn) return;
+        if (selectedDisease === d) {
+          btn.className = 'disease-tab rounded-xl px-4 py-2.5 text-sm font-bold bg-teal-600 text-white shadow-sm transition';
+        } else {
+          btn.className = 'disease-tab rounded-xl px-4 py-2.5 text-sm font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition';
+        }
+      });
+
+      document.querySelectorAll('.meal-btn').forEach(btn => {
+        const meal = btn.getAttribute('data-meal');
+        if (selectedMeal === meal) {
+          btn.className = 'meal-btn rounded-lg px-3 py-1.5 text-xs font-bold bg-slate-900 text-white transition';
+        } else {
+          btn.className = 'meal-btn rounded-lg px-3 py-1.5 text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition';
+        }
+      });
+    }
+
+    function getFilteredRecipes() {
+      const codeQuery = (document.getElementById('codeSearchInput')?.value || '').trim().toLowerCase();
+      const query = (document.getElementById('searchInput')?.value || '').trim().toLowerCase();
+
+      return recipes.filter(r => {
+        const matchDisease = selectedDisease === 'Todas' || r.disease === selectedDisease;
+        const matchMeal = selectedMeal === 'Todos' || r.meal === selectedMeal;
+        const matchCode = !codeQuery || r.code.toLowerCase().includes(codeQuery);
+        const matchQuery = !query ||
+          r.name.toLowerCase().includes(query) ||
+          r.code.toLowerCase().includes(query) ||
+          r.ingredients.some(i => i.item.toLowerCase().includes(query));
+        return matchDisease && matchMeal && matchCode && matchQuery;
+      });
+    }
+
+    function renderRecipes() {
+      const filtered = getFilteredRecipes();
+      const grid = document.getElementById('recipesGrid');
+      const counter = document.getElementById('resultsCounter');
+
+      counter.textContent = `Mostrando ${filtered.length} ${filtered.length === 1 ? 'receta estandarizada' : 'recetas estandarizadas'}`;
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full rounded-2xl border border-dashed border-slate-300 bg-white p-10 text-center space-y-3">
+            <p class="text-base font-bold text-slate-700">No se encontraron recetas con los filtros seleccionados.</p>
+            <button type="button" onclick="resetFilters()" class="rounded-xl bg-teal-600 px-4 py-2 text-xs font-semibold text-white hover:bg-teal-700">
+              Mostrar todas las recetas
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(r => {
+        const isCardiac = r.disease === 'Cardíacas';
+        const tagClass = isCardiac
+          ? 'bg-rose-50 text-rose-700 border-rose-200'
+          : 'bg-blue-50 text-blue-700 border-blue-200';
+
+        return `
+          <article class="print-break flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-5 shadow-sm hover:border-teal-500/60 hover:shadow-md transition">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between gap-2">
+                <span class="rounded-md bg-slate-900 px-2.5 py-0.5 text-xs font-bold text-white">${escapeHtml(r.code)}</span>
+                <span class="rounded-full border px-2.5 py-0.5 text-[11px] font-bold ${tagClass}">
+                  ${escapeHtml(r.disease)}
+                </span>
+              </div>
+
+              <div class="text-xs font-bold uppercase tracking-wide text-teal-700">
+                ${escapeHtml(getMealDisplay(r.meal))} · ${r.servings} ${r.servings === 1 ? 'porción' : 'porciones'}
+              </div>
+
+              <h3 class="text-base font-bold leading-snug text-slate-900">
+                ${escapeHtml(r.name)}
+              </h3>
+
+              <div class="flex flex-wrap items-center gap-2 text-xs font-semibold text-slate-600">
+                <span class="inline-flex items-center gap-1 rounded-lg bg-amber-50 px-2.5 py-1 text-amber-800 border border-amber-200/80">
+                  <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  ${r.prepTime || 15} min
+                </span>
+                <span class="inline-flex items-center gap-1 rounded-lg bg-emerald-50 px-2.5 py-1 text-emerald-800 border border-emerald-200/80">
+                  <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  Bs. ${Number(r.cost || 0).toFixed(2)}
+                </span>
+              </div>
+
+              <div class="grid grid-cols-4 gap-1.5 rounded-xl bg-slate-50 p-2.5 text-center border border-slate-100">
+                <div>
+                  <span class="block text-[10px] font-bold text-slate-400">KCAL</span>
+                  <span class="text-xs font-extrabold text-teal-800">${r.kcal}</span>
+                </div>
+                <div>
+                  <span class="block text-[10px] font-bold text-slate-400">PRO</span>
+                  <span class="text-xs font-bold text-slate-800">${r.protein}g</span>
+                </div>
+                <div>
+                  <span class="block text-[10px] font-bold text-slate-400">LIP</span>
+                  <span class="text-xs font-bold text-slate-800">${r.lipids}g</span>
+                </div>
+                <div>
+                  <span class="block text-[10px] font-bold text-slate-400">HC</span>
+                  <span class="text-xs font-bold text-slate-800">${r.carbs}g</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4 flex items-center justify-between gap-2 border-t border-slate-100 pt-3">
+              <button type="button" onclick="openRecipeDetail('${r.id}')" class="rounded-xl bg-teal-600 px-3.5 py-2 text-xs font-bold text-white hover:bg-teal-700 transition">
+                Ver Ficha Técnica
+              </button>
+              <div class="flex items-center gap-1.5">
+                <button type="button" onclick="openRecipeById('${r.id}')" class="rounded-lg border border-slate-200 px-2.5 py-1.5 text-xs font-semibold text-slate-600 hover:bg-slate-100 transition">
+                  Editar
+                </button>
+                <button type="button" id="del-btn-${r.id}" onclick="requestDeleteRecipe('${r.id}')" class="rounded-lg border border-rose-200 px-2.5 py-1.5 text-xs font-semibold text-rose-600 hover:bg-rose-50 transition">
+                  Borrar
+                </button>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    // =========================================================================
+    // 6B. COMBINADOR DE MENÚ DIARIO (AUTOMÁTICO Y MANUAL)
+    // =========================================================================
+    let currentCombinedMenu = [];
+    let combinerMode = 'auto'; // 'auto' | 'manual'
+    let manualSelections = {
+      'Desayuno': '',
+      'Media Mañana': '',
+      'Almuerzo': '',
+      'Media Tarde': '',
+      'Cena': ''
+    };
+
+    function updateCombinerModeButtons() {
+      const btnAuto = document.getElementById('btnAutoCombine');
+      const btnManual = document.getElementById('btnManualCombine');
+      if (!btnAuto || !btnManual) return;
+
+      if (combinerMode === 'manual') {
+        btnManual.className = 'inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-xs sm:text-sm font-bold text-white shadow-sm hover:bg-slate-800 transition';
+        btnAuto.className = 'inline-flex items-center gap-2 rounded-xl border border-teal-600 bg-white px-4 py-2.5 text-xs sm:text-sm font-bold text-teal-800 shadow-sm hover:bg-teal-50 transition';
+      } else {
+        btnAuto.className = 'inline-flex items-center gap-2 rounded-xl bg-teal-600 px-4 py-2.5 text-xs sm:text-sm font-bold text-white shadow-sm hover:bg-teal-700 transition';
+        btnManual.className = 'inline-flex items-center gap-2 rounded-xl border border-teal-600 bg-white px-4 py-2.5 text-xs sm:text-sm font-bold text-teal-800 shadow-sm hover:bg-teal-50 transition';
+      }
+    }
+
+    function generateDailyCombination() {
+      combinerMode = 'auto';
+      updateCombinerModeButtons();
+
+      const diseaseChoice = document.getElementById('combinerDiseaseSelect').value;
+      const mealTimes = ['Desayuno', 'Media Mañana', 'Almuerzo', 'Media Tarde', 'Cena'];
+      const selectedList = [];
+
+      mealTimes.forEach(meal => {
+        const pool = recipes.filter(r =>
+          r.meal === meal && (diseaseChoice === 'Todas' || r.disease === diseaseChoice)
+        );
+        if (pool.length > 0) {
+          const randomIndex = Math.floor(Math.random() * pool.length);
+          const chosen = pool[randomIndex];
+          selectedList.push(chosen);
+          manualSelections[meal] = chosen.id;
+        }
+      });
+
+      currentCombinedMenu = selectedList;
+      renderCombinedMenu();
+      showToast('Menú diario de 5 tiempos combinado automáticamente.');
+    }
+
+    function openManualCombiner() {
+      combinerMode = 'manual';
+      updateCombinerModeButtons();
+
+      const diseaseChoice = document.getElementById('combinerDiseaseSelect').value;
+      const mealTimes = ['Desayuno', 'Media Mañana', 'Almuerzo', 'Media Tarde', 'Cena'];
+
+      mealTimes.forEach(meal => {
+        const pool = recipes.filter(r =>
+          r.meal === meal && (diseaseChoice === 'Todas' || r.disease === diseaseChoice)
+        );
+        const currentId = manualSelections[meal];
+        const stillValid = pool.some(r => r.id === currentId);
+        if (!stillValid) {
+          manualSelections[meal] = pool.length > 0 ? pool[0].id : '';
+        }
+      });
+
+      syncManualMenuArray();
+      renderCombinedMenu();
+      showToast('Modo manual activado: selecciona la receta deseada en cada tiempo de comida.');
+    }
+
+    function handleManualMealChange(meal, recipeId) {
+      manualSelections[meal] = recipeId;
+      syncManualMenuArray();
+      renderCombinedMenu();
+    }
+
+    function syncManualMenuArray() {
+      const mealTimes = ['Desayuno', 'Media Mañana', 'Almuerzo', 'Media Tarde', 'Cena'];
+      currentCombinedMenu = mealTimes
+        .map(meal => recipes.find(r => r.id === manualSelections[meal]))
+        .filter(Boolean);
+    }
+
+    function renderCombinedMenu() {
+      const container = document.getElementById('combinerResultContainer');
+      const summaryBar = document.getElementById('combinerSummaryBar');
+      const modeBadge = document.getElementById('combinerModeBadge');
+      if (!container || !summaryBar) return;
+
+      if (combinerMode === 'manual') {
+        const diseaseChoice = document.getElementById('combinerDiseaseSelect').value;
+        const mealTimes = ['Desayuno', 'Media Mañana', 'Almuerzo', 'Media Tarde', 'Cena'];
+
+        let totalKcal = 0;
+        let totalPro = 0;
+        let totalLip = 0;
+        let totalHC = 0;
+
+        container.innerHTML = mealTimes.map(meal => {
+          const pool = recipes.filter(r =>
+            r.meal === meal && (diseaseChoice === 'Todas' || r.disease === diseaseChoice)
+          );
+          const chosen = recipes.find(r => r.id === manualSelections[meal]) || null;
+
+          if (chosen) {
+            totalKcal += Number(chosen.kcal) || 0;
+            totalPro += Number(chosen.protein) || 0;
+            totalLip += Number(chosen.lipids) || 0;
+            totalHC += Number(chosen.carbs) || 0;
+          }
+
+          const optionsHtml = pool.length > 0
+            ? pool.map(opt => `
+                <option value="${opt.id}" ${chosen && chosen.id === opt.id ? 'selected' : ''}>
+                  ${escapeHtml(opt.code)} · ${escapeHtml(opt.name)} (${opt.kcal} kcal)
+                </option>
+              `).join('')
+            : '<option value="">Sin recetas disponibles</option>';
+
+          const isCardiac = chosen && chosen.disease === 'Cardíacas';
+          const dotColor = chosen ? (isCardiac ? 'bg-rose-500' : 'bg-blue-500') : 'bg-slate-300';
+
+          return `
+            <div class="flex flex-col justify-between rounded-xl border border-teal-300 bg-white p-3.5 shadow-2xs space-y-2.5">
+              <div class="space-y-2">
+                <div class="flex items-center justify-between gap-1">
+                  <span class="text-[11px] font-bold uppercase tracking-wide text-teal-700">${escapeHtml(getMealDisplay(meal))}</span>
+                  ${chosen ? `
+                    <span class="inline-flex items-center gap-1 text-[10px] font-semibold text-slate-500">
+                      <span class="h-2 w-2 rounded-full ${dotColor}"></span>
+                      ${escapeHtml(chosen.disease)}
+                    </span>
+                  ` : ''}
+                </div>
+
+                <select onchange="handleManualMealChange('${meal}', this.value)" class="w-full rounded-lg border border-slate-300 bg-slate-50 px-2.5 py-2 text-xs font-semibold text-slate-800 focus:border-teal-600 focus:bg-white focus:outline-none">
+                  ${optionsHtml}
+                </select>
+
+                ${chosen ? `
+                  <div class="rounded-lg bg-teal-50/70 px-2.5 py-1.5 text-[10px] font-semibold text-teal-900">
+                    <span class="font-extrabold">${escapeHtml(chosen.code)}</span> · ${chosen.kcal} kcal · P:${chosen.protein}g · L:${chosen.lipids}g · HC:${chosen.carbs}g
+                  </div>
+                ` : ''}
+              </div>
+
+              ${chosen ? `
+                <div class="pt-2 border-t border-slate-100 flex items-center justify-end">
+                  <button type="button" onclick="openRecipeDetail('${chosen.id}')" class="text-xs font-bold text-teal-700 hover:underline">
+                    Abrir ficha →
+                  </button>
+                </div>
+              ` : ''}
+            </div>
+          `;
+        }).join('');
+
+        if (modeBadge) modeBadge.textContent = 'Manual';
+        document.getElementById('combinerTotalLabel').textContent = `${currentCombinedMenu.length} tiempos de comida (${currentCombinedMenu.map(r => r.code).join(' · ')})`;
+        document.getElementById('combinerMacrosLabel').textContent = `Total diario: ${Math.round(totalKcal)} kcal · PRO: ${totalPro.toFixed(1)}g · LIP: ${totalLip.toFixed(1)}g · HC: ${totalHC.toFixed(1)}g`;
+        summaryBar.classList.remove('hidden');
+        summaryBar.classList.add('flex');
+        return;
+      }
+
+      if (!currentCombinedMenu || currentCombinedMenu.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-full rounded-xl border border-dashed border-teal-200 bg-white/80 p-4 text-center text-xs text-slate-500">
+            Elige <strong>"Combinar Automáticamente"</strong> para generar una propuesta al azar o <strong>"Combinar Manualmente"</strong> para escoger cada tiempo de comida (DES, MER.M, ALM, MER.V y CEN).
+          </div>
+        `;
+        summaryBar.classList.add('hidden');
+        return;
+      }
+
+      let totalKcal = 0;
+      let totalPro = 0;
+      let totalLip = 0;
+      let totalHC = 0;
+
+      container.innerHTML = currentCombinedMenu.map(r => {
+        totalKcal += Number(r.kcal) || 0;
+        totalPro += Number(r.protein) || 0;
+        totalLip += Number(r.lipids) || 0;
+        totalHC += Number(r.carbs) || 0;
+        const isCardiac = r.disease === 'Cardíacas';
+        const dotColor = isCardiac ? 'bg-rose-500' : 'bg-blue-500';
+
+        return `
+          <div class="flex flex-col justify-between rounded-xl border border-slate-200 bg-white p-3.5 shadow-2xs hover:border-teal-500 transition">
+            <div class="space-y-1.5">
+              <div class="flex items-center justify-between gap-1">
+                <span class="rounded bg-slate-900 px-2 py-0.5 text-[11px] font-bold text-white">${escapeHtml(r.code)}</span>
+                <span class="inline-flex items-center gap-1 text-[11px] font-semibold text-slate-500">
+                  <span class="h-2 w-2 rounded-full ${dotColor}"></span>
+                  ${escapeHtml(r.disease)}
+                </span>
+              </div>
+              <div class="text-[11px] font-bold uppercase tracking-wide text-teal-700">${escapeHtml(getMealDisplay(r.meal))}</div>
+              <h4 class="text-xs font-bold leading-snug text-slate-900 line-clamp-2">${escapeHtml(r.name)}</h4>
+              <div class="rounded-lg bg-slate-50 px-2 py-1 text-[10px] font-semibold text-slate-600">
+                ${r.kcal} kcal · P:${r.protein}g · L:${r.lipids}g · HC:${r.carbs}g
+              </div>
+            </div>
+            <div class="mt-3 pt-2 border-t border-slate-100 flex items-center justify-end">
+              <button type="button" onclick="openRecipeDetail('${r.id}')" class="text-xs font-bold text-teal-700 hover:underline">
+                Abrir ficha →
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      if (modeBadge) modeBadge.textContent = 'Automático';
+      document.getElementById('combinerTotalLabel').textContent = `${currentCombinedMenu.length} tiempos de comida (${currentCombinedMenu.map(r => r.code).join(' · ')})`;
+      document.getElementById('combinerMacrosLabel').textContent = `Total diario: ${Math.round(totalKcal)} kcal · PRO: ${totalPro.toFixed(1)}g · LIP: ${totalLip.toFixed(1)}g · HC: ${totalHC.toFixed(1)}g`;
+      summaryBar.classList.remove('hidden');
+      summaryBar.classList.add('flex');
+    }
+
+    // =========================================================================
+    // 7. RENDERIZADO DE FICHA TÉCNICA ESTANDARIZADA COMPLETA
+    // =========================================================================
+    function renderRecipeDetail(recipeId) {
+      const recipe = recipes.find(r => r.id === recipeId);
+      if (!recipe) {
+        navigateTo('menu');
+        return;
+      }
+
+      const isCardiac = recipe.disease === 'Cardíacas';
+      const mol = molecules[isCardiac ? 'Cardíacas' : 'Respiratorias'];
+      const tagClass = isCardiac
+        ? 'bg-rose-100 text-rose-800 border-rose-200'
+        : 'bg-blue-100 text-blue-800 border-blue-200';
+
+      const photoMarkup = recipe.photoDataUrl
+        ? `<img src="${recipe.photoDataUrl}" alt="${escapeAttr(recipe.name)}" class="h-56 w-full rounded-2xl object-cover border border-slate-200" />`
+        : `
+          <div class="flex h-56 w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-slate-200 bg-slate-50 p-4 text-center">
+            <svg class="h-9 w-9 text-slate-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+            </svg>
+            <p class="mt-2 text-xs font-semibold text-slate-600">Fotografía del Plato (${escapeHtml(recipe.code)})</p>
+            <p class="text-[11px] text-slate-400">Puedes cargar la fotografía real de tu preparación aquí abajo.</p>
+          </div>
+        `;
+
+      const ingredientsRows = recipe.ingredients.map((ing, idx) => `
+        <tr class="border-b border-slate-100 last:border-none">
+          <td class="py-2.5 pr-4 text-xs font-semibold text-slate-400">${idx + 1}</td>
+          <td class="py-2.5 pr-4 text-sm font-medium text-slate-800">${escapeHtml(ing.item)}</td>
+          <td class="py-2.5 text-right text-sm font-bold text-teal-800">${escapeHtml(ing.qty)}</td>
+        </tr>
+      `).join('');
+
+      const stepsList = recipe.steps.map((step, idx) => `
+        <li class="flex items-start gap-3 rounded-xl bg-slate-50 p-3.5 border border-slate-100">
+          <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-teal-600 text-xs font-bold text-white">
+            ${idx + 1}
+          </span>
+          <p class="text-sm leading-relaxed text-slate-700">${escapeHtml(step)}</p>
+        </li>
+      `).join('');
+
+      document.getElementById('fichaContent').innerHTML = `
+        <!-- Encabezado de Ficha -->
+        <div class="flex flex-wrap items-start justify-between gap-4 border-b border-slate-200 pb-6">
+          <div class="space-y-2">
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="rounded-full border px-3 py-1 text-xs font-bold ${tagClass}">
+                Enfermedades ${escapeHtml(recipe.disease)}
+              </span>
+              <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-700">
+                Tiempo de comida: ${escapeHtml(getMealDisplay(recipe.meal))}
+              </span>
+              <span class="rounded-full bg-slate-900 px-3 py-1 text-xs font-bold text-white">
+                Código: ${escapeHtml(recipe.code)}
+              </span>
+            </div>
+            <h2 class="text-2xl font-extrabold text-slate-900 sm:text-3xl">${escapeHtml(recipe.name)}</h2>
+            <p class="text-xs text-slate-500">Molécula calórica de referencia: ${mol.kcal} kcal/día (CHO ${mol.choPct}% · PRO ${mol.proPct}% · Grasa ${mol.fatPct}%)</p>
+          </div>
+        </div>
+
+        <!-- Fotografía + Indicadores Técnicos -->
+        <div class="grid gap-6 lg:grid-cols-12">
+          <div class="lg:col-span-5 space-y-3">
+            ${photoMarkup}
+            <label class="no-print flex cursor-pointer items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition">
+              <span>Subir / Cambiar Fotografía</span>
+              <input type="file" accept="image/*" onchange="handlePhotoUpload(event, '${recipe.id}')" class="hidden" />
+            </label>
+          </div>
+
+          <div class="lg:col-span-7 grid gap-4 sm:grid-cols-2 content-start">
+            <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Número de Porciones</span>
+              <p class="mt-1 text-xl font-extrabold text-slate-900">${recipe.servings} ${recipe.servings === 1 ? 'porción' : 'porciones'}</p>
+            </div>
+            <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Ingredientes Estandarizados</span>
+              <p class="mt-1 text-xl font-extrabold text-slate-900">${recipe.ingredients.length} insumos</p>
+            </div>
+            <div class="rounded-2xl border border-amber-200 bg-amber-50/70 p-4">
+              <span class="text-xs font-bold uppercase tracking-wider text-amber-800">Tiempo de Preparación</span>
+              <p class="mt-1 text-xl font-extrabold text-amber-950">${recipe.prepTime || 15} minutos</p>
+            </div>
+            <div class="rounded-2xl border border-emerald-200 bg-emerald-50/70 p-4">
+              <span class="text-xs font-bold uppercase tracking-wider text-emerald-800">Costo de Preparación</span>
+              <p class="mt-1 text-xl font-extrabold text-emerald-950">Bs. ${Number(recipe.cost || 0).toFixed(2)}</p>
+            </div>
+            <div class="sm:col-span-2 grid grid-cols-2 gap-3 rounded-2xl border border-teal-200 bg-teal-50/70 p-4 sm:grid-cols-4">
+              <div>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-teal-800">Valor Calórico</span>
+                <p class="mt-0.5 text-lg font-extrabold text-teal-950">${recipe.kcal} kcal</p>
+              </div>
+              <div>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-teal-800">Proteínas</span>
+                <p class="mt-0.5 text-lg font-extrabold text-slate-900">${recipe.protein} g</p>
+              </div>
+              <div>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-teal-800">Lípidos</span>
+                <p class="mt-0.5 text-lg font-extrabold text-slate-900">${recipe.lipids} g</p>
+              </div>
+              <div>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-teal-800">Hidratos de C. (HC)</span>
+                <p class="mt-0.5 text-lg font-extrabold text-slate-900">${recipe.carbs} g</p>
+              </div>
+            </div>
+            <div class="sm:col-span-2 rounded-2xl border border-slate-200 bg-slate-50 p-4">
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-600">Pauta Nutricional de la Patología</span>
+              <p class="mt-1 text-xs leading-relaxed text-slate-700">${escapeHtml(mol.notes)}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ingredientes y Gramajes Exactos + Procedimiento -->
+        <div class="grid gap-8 lg:grid-cols-12 pt-2">
+          <div class="lg:col-span-5 space-y-3">
+            <h3 class="text-lg font-bold text-slate-900">Ingredientes y Gramajes Exactos</h3>
+            <div class="overflow-hidden rounded-2xl border border-slate-200 bg-white">
+              <table class="w-full text-left border-collapse">
+                <thead class="bg-slate-50 border-b border-slate-200 text-[11px] font-bold uppercase text-slate-500">
+                  <tr>
+                    <th class="py-2.5 pl-3 pr-2">#</th>
+                    <th class="py-2.5 pr-4">Ingrediente</th>
+                    <th class="py-2.5 pr-3 text-right">Gramaje</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 px-3">
+                  ${ingredientsRows}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 space-y-3">
+            <h3 class="text-lg font-bold text-slate-900">Procedimiento Paso a Paso</h3>
+            <ol class="space-y-2.5">
+              ${stepsList}
+            </ol>
+          </div>
+        </div>
+      `;
+
+      // Actualizar botones Anterior / Siguiente según lista filtrada
+      const list = getFilteredRecipes();
+      const idxInFiltered = list.findIndex(r => r.id === recipeId);
+      const prevBtn = document.getElementById('prevRecipeBtn');
+      const nextBtn = document.getElementById('nextRecipeBtn');
+
+      prevBtn.disabled = idxInFiltered <= 0;
+      prevBtn.classList.toggle('opacity-40', idxInFiltered <= 0);
+      prevBtn.classList.toggle('cursor-not-allowed', idxInFiltered <= 0);
+
+      nextBtn.disabled = idxInFiltered < 0 || idxInFiltered >= list.length - 1;
+      nextBtn.classList.toggle('opacity-40', idxInFiltered < 0 || idxInFiltered >= list.length - 1);
+      nextBtn.classList.toggle('cursor-not-allowed', idxInFiltered < 0 || idxInFiltered >= list.length - 1);
+    }
+
+    function stepRecipe(delta) {
+      const list = getFilteredRecipes();
+      const idx = list.findIndex(r => r.id === currentRecipeId);
+      const target = list[idx + delta];
+      if (target) {
+        currentRecipeId = target.id;
+        renderRecipeDetail(target.id);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function handlePhotoUpload(event, recipeId) {
+      const file = event.target.files?.[0];
+      if (!file) return;
+      if (file.size > 1.5 * 1024 * 1024) {
+        showToast('Selecciona una imagen menor a 1.5 MB para conservar el rendimiento.');
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const idx = recipes.findIndex(r => r.id === recipeId);
+        if (idx !== -1) {
+          recipes[idx].photoDataUrl = e.target.result;
+          saveRecipesToStorage();
+          renderRecipeDetail(recipeId);
+          showToast('Fotografía agregada a la ficha técnica.');
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // =========================================================================
+    // 8. MODAL CREAR / EDITAR RECETA
+    // =========================================================================
+    function addIngredientRow(itemVal = '', qtyVal = '') {
+      const container = document.getElementById('ingredientRowsContainer');
+      const row = document.createElement('div');
+      row.className = 'ingredient-row grid grid-cols-12 gap-2 items-center';
+      row.innerHTML = `
+        <input type="text" placeholder="Ej. Pechuga de pollo sin piel" value="${escapeAttr(itemVal)}" class="ing-item-input col-span-7 rounded-xl border border-slate-300 px-3 py-2 text-sm text-slate-800 focus:border-teal-600 focus:outline-none" />
+        <input type="text" placeholder="Ej. 120 g" value="${escapeAttr(qtyVal)}" class="ing-qty-input col-span-4 rounded-xl border border-slate-300 bg-teal-50/40 px-3 py-2 text-sm font-semibold text-teal-900 focus:border-teal-600 focus:bg-white focus:outline-none" />
+        <button type="button" onclick="removeIngredientRow(this)" title="Quitar fila" class="col-span-1 flex h-9 items-center justify-center rounded-xl border border-slate-200 text-xs font-bold text-slate-400 hover:border-rose-200 hover:bg-rose-50 hover:text-rose-600 transition">
+          ✕
+        </button>
+      `;
+      container.appendChild(row);
+    }
+
+    function removeIngredientRow(btn) {
+      const container = document.getElementById('ingredientRowsContainer');
+      if (container.children.length > 1) {
+        btn.closest('.ingredient-row').remove();
+      } else {
+        const row = btn.closest('.ingredient-row');
+        row.querySelector('.ing-item-input').value = '';
+        row.querySelector('.ing-qty-input').value = '';
+      }
+    }
+
+    function renderIngredientRows(ingredientsList) {
+      const container = document.getElementById('ingredientRowsContainer');
+      container.innerHTML = '';
+      if (Array.isArray(ingredientsList) && ingredientsList.length > 0) {
+        ingredientsList.forEach(ing => addIngredientRow(ing.item, ing.qty));
+      } else {
+        addIngredientRow('', '');
+        addIngredientRow('', '');
+      }
+    }
+
+    function updateSuggestedCodePreview() {
+      const existingId = document.getElementById('editRecipeId').value;
+      if (!existingId) {
+        const meal = document.getElementById('formMeal').value;
+        document.getElementById('formCode').value = getNextCodeForMeal(meal);
+      }
+    }
+
+    function openRecipeById(recipeId) {
+      const found = recipes.find(r => r.id === recipeId);
+      if (found) openRecipeModal(found);
+    }
+
+    function openRecipeModal(recipeToEdit = null) {
+      const modal = document.getElementById('recipeModal');
+      const titleEl = document.getElementById('modalTitle');
+
+      if (recipeToEdit) {
+        titleEl.textContent = `Modificar Ficha Técnica — ${recipeToEdit.code}`;
+        document.getElementById('editRecipeId').value = recipeToEdit.id;
+        document.getElementById('formName').value = recipeToEdit.name;
+        document.getElementById('formDisease').value = recipeToEdit.disease;
+        document.getElementById('formMeal').value = recipeToEdit.meal;
+        document.getElementById('formCode').value = recipeToEdit.code;
+        document.getElementById('formServings').value = recipeToEdit.servings;
+        document.getElementById('formCost').value = recipeToEdit.cost ?? 0;
+        document.getElementById('formPrepTime').value = recipeToEdit.prepTime ?? 15;
+        document.getElementById('formKcal').value = recipeToEdit.kcal ?? 0;
+        document.getElementById('formProtein').value = recipeToEdit.protein ?? 0;
+        document.getElementById('formLipids').value = recipeToEdit.lipids ?? 0;
+        document.getElementById('formCarbs').value = recipeToEdit.carbs ?? 0;
+        renderIngredientRows(recipeToEdit.ingredients);
+        document.getElementById('formSteps').value = recipeToEdit.steps.join('\n');
+      } else {
+        titleEl.textContent = 'Nueva Ficha Técnica Estandarizada';
+        document.getElementById('recipeForm').reset();
+        document.getElementById('editRecipeId').value = '';
+        document.getElementById('formServings').value = 1;
+        document.getElementById('formCost').value = 8.5;
+        document.getElementById('formPrepTime').value = 15;
+        document.getElementById('formCode').value = getNextCodeForMeal('Desayuno');
+        renderIngredientRows([]);
+      }
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function editCurrentRecipe() {
+      const current = recipes.find(r => r.id === currentRecipeId);
+      if (current) openRecipeModal(current);
+    }
+
+    function closeRecipeModal() {
+      const modal = document.getElementById('recipeModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function handleRecipeFormSubmit(event) {
+      event.preventDefault();
+      const existingId = document.getElementById('editRecipeId').value;
+      const name = document.getElementById('formName').value.trim();
+      const disease = document.getElementById('formDisease').value;
+      const meal = document.getElementById('formMeal').value;
+      const code = document.getElementById('formCode').value.trim().toUpperCase() || getNextCodeForMeal(meal);
+      const servings = Number(document.getElementById('formServings').value) || 1;
+      const cost = parseFloat(document.getElementById('formCost').value) || 0;
+      const prepTime = parseInt(document.getElementById('formPrepTime').value, 10) || 15;
+      const kcal = parseFloat(document.getElementById('formKcal').value) || 0;
+      const protein = parseFloat(document.getElementById('formProtein').value) || 0;
+      const lipids = parseFloat(document.getElementById('formLipids').value) || 0;
+      const carbs = parseFloat(document.getElementById('formCarbs').value) || 0;
+
+      const ingredients = Array.from(document.querySelectorAll('#ingredientRowsContainer .ingredient-row'))
+        .map(row => ({
+          item: row.querySelector('.ing-item-input').value.trim(),
+          qty: row.querySelector('.ing-qty-input').value.trim()
+        }))
+        .filter(ing => ing.item !== '' || ing.qty !== '')
+        .map(ing => ({
+          item: ing.item || 'Ingrediente',
+          qty: ing.qty || 'Al gusto'
+        }));
+
+      if (ingredients.length === 0) {
+        showToast('Agrega al menos un ingrediente con su gramaje.');
+        return;
+      }
+
+      const steps = document.getElementById('formSteps').value
+        .split('\n')
+        .map(line => line.replace(/^\d+\.\s*/, '').trim())
+        .filter(Boolean);
+
+      if (existingId) {
+        const idx = recipes.findIndex(r => r.id === existingId);
+        if (idx !== -1) {
+          recipes[idx] = {
+            ...recipes[idx],
+            code,
+            name,
+            disease,
+            meal,
+            servings,
+            cost,
+            prepTime,
+            kcal,
+            protein,
+            lipids,
+            carbs,
+            ingredients,
+            steps
+          };
+          saveRecipesToStorage();
+          closeRecipeModal();
+          updateFilterButtons();
+          if (currentView === 'ficha') {
+            renderRecipeDetail(existingId);
+          } else {
+            renderRecipes();
+          }
+          showToast(`Ficha ${code} actualizada correctamente.`);
+        }
+      } else {
+        const newId = 'rec-' + Date.now();
+        const newRecipe = {
+          id: newId,
+          code,
+          disease,
+          name,
+          meal,
+          servings,
+          cost,
+          prepTime,
+          kcal,
+          protein,
+          lipids,
+          carbs,
+          ingredients,
+          steps,
+          photoDataUrl: ''
+        };
+        recipes.push(newRecipe);
+        saveRecipesToStorage();
+        closeRecipeModal();
+        updateFilterButtons();
+        renderRecipes();
+        showToast(`Nueva receta ${code} agregada al manual.`);
+      }
+    }
+
+    let pendingDeleteRecipeId = null;
+    let pendingDeleteTimer = null;
+
+    function requestDeleteRecipe(recipeId) {
+      const target = recipes.find(r => r.id === recipeId);
+      if (!target) return;
+
+      if (pendingDeleteRecipeId !== recipeId) {
+        pendingDeleteRecipeId = recipeId;
+        const btn = document.getElementById(`del-btn-${recipeId}`);
+        if (btn) btn.textContent = '¿Confirmar?';
+        showToast(`Haz clic nuevamente en borrar para eliminar ${target.code} (${target.name}).`);
+        clearTimeout(pendingDeleteTimer);
+        pendingDeleteTimer = setTimeout(() => {
+          pendingDeleteRecipeId = null;
+          renderRecipes();
+        }, 4000);
+        return;
+      }
+
+      pendingDeleteRecipeId = null;
+      clearTimeout(pendingDeleteTimer);
+      recipes = recipes.filter(r => r.id !== recipeId);
+      currentCombinedMenu = currentCombinedMenu.filter(r => r.id !== recipeId);
+      saveRecipesToStorage();
+      updateFilterButtons();
+      renderRecipes();
+      renderCombinedMenu();
+      showToast(`Receta ${target.code} eliminada del manual.`);
+    }
+
+    let pendingDeleteFicha = false;
+    function requestDeleteCurrentRecipe() {
+      if (!currentRecipeId) return;
+      const target = recipes.find(r => r.id === currentRecipeId);
+      if (!target) return;
+
+      if (!pendingDeleteFicha) {
+        pendingDeleteFicha = true;
+        showToast(`Haz clic nuevamente en "Eliminar Receta" para borrar ${target.code}.`);
+        setTimeout(() => { pendingDeleteFicha = false; }, 4000);
+        return;
+      }
+
+      pendingDeleteFicha = false;
+      recipes = recipes.filter(r => r.id !== currentRecipeId);
+      currentCombinedMenu = currentCombinedMenu.filter(r => r.id !== currentRecipeId);
+      currentRecipeId = null;
+      saveRecipesToStorage();
+      showToast(`Receta ${target.code} eliminada.`);
+      navigateTo('menu');
+    }
+
+    let resetConfirmPending = false;
+    function confirmResetCatalog() {
+      if (!resetConfirmPending) {
+        resetConfirmPending = true;
+        showToast('Haz clic nuevamente en "Restaurar catálogo base" para confirmar.');
+        setTimeout(() => { resetConfirmPending = false; }, 4000);
+        return;
+      }
+      resetConfirmPending = false;
+      recipes = buildInitialRecipes();
+      saveRecipesToStorage();
+      updateFilterButtons();
+      renderRecipes();
+      currentCombinedMenu = [];
+      renderCombinedMenu();
+      showToast('Catálogo base de 50 recetas restaurado.');
+    }
+
+    // =========================================================================
+    // 9. UTILIDADES DE SEGURIDAD HTML
+    // =========================================================================
+    function escapeHtml(str) {
+      return String(str || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function escapeAttr(str) {
+      return escapeHtml(str);
+    }
+
+    // =========================================================================
+    // 10. INICIALIZACIÓN
+    // =========================================================================
+    window.addEventListener('DOMContentLoaded', () => {
+      loadState();
+      updateFilterButtons();
+      renderMolecules();
+      renderCombinedMenu();
+      renderRecipes();
+    });
+  </script>
+</body>
+</html>
